@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F51B5BE6-79A8-44EB-83DD-3109E527F81E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eWAY.Rapid</RootNamespace>
+    <AssemblyName>eWAY.Rapid</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\eWAY.Rapid.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>eWAY.Rapid.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\BeagleVerifyStatus.cs" />
+    <Compile Include="Enums\FilterMatchType.cs" />
+    <Compile Include="Enums\FraudAction.cs" />
+    <Compile Include="Enums\NamespaceDoc.cs" />
+    <Compile Include="Enums\PaymentMethod.cs" />
+    <Compile Include="Enums\RequestMethod.cs" />
+    <Compile Include="Enums\ShippingMethod.cs" />
+    <Compile Include="Enums\TransactionTypes.cs" />
+    <Compile Include="Enums\VerifyStatus.cs" />
+    <Compile Include="Internals\Enums\AllowedCards.cs" />
+    <Compile Include="Internals\Enums\CustomView.cs" />
+    <Compile Include="Internals\Enums\FilterMatchType.cs" />
+    <Compile Include="Internals\Enums\HttpMethods.cs" />
+    <Compile Include="Internals\Enums\Method.cs" />
+    <Compile Include="Internals\Enums\PaymentType.cs" />
+    <Compile Include="Internals\Enums\SettlementReportMode.cs" />
+    <Compile Include="Internals\Enums\TransactionTypes.cs" />
+    <Compile Include="Internals\Models\BalanceSummaryPerCardType.cs" />
+    <Compile Include="Internals\Models\BeagleVerifyResult.cs" />
+    <Compile Include="Internals\Models\CardDetails.cs" />
+    <Compile Include="Internals\Models\Customer.cs" />
+    <Compile Include="Internals\Models\DirectTokenCustomer.cs" />
+    <Compile Include="Internals\Models\LineItem.cs" />
+    <Compile Include="Internals\Models\Options.cs" />
+    <Compile Include="Internals\Models\Payment.cs" />
+    <Compile Include="Internals\Models\Refund.cs" />
+    <Compile Include="Internals\Models\SettlementSummary.cs" />
+    <Compile Include="Internals\Models\SettlementTransaction.cs" />
+    <Compile Include="Internals\Models\ShippingAddress.cs" />
+    <Compile Include="Internals\Models\TokenCustomer.cs" />
+    <Compile Include="Internals\Models\TransactionFilter.cs" />
+    <Compile Include="Internals\Models\TransactionResult.cs" />
+    <Compile Include="Internals\Models\VerificationResult.cs" />
+    <Compile Include="Internals\RapidClient.cs" />
+    <Compile Include="Internals\Request\BaseRequest.cs" />
+    <Compile Include="Internals\Request\CancelAuthorisationRequest.cs" />
+    <Compile Include="Internals\Request\CaptureAuthBaseRequest.cs" />
+    <Compile Include="Internals\Request\CapturePaymentRequest.cs" />
+    <Compile Include="Internals\Request\CreateAccessCodeRequest.cs" />
+    <Compile Include="Internals\Request\CreateAccessCodeSharedRequest.cs" />
+    <Compile Include="Internals\Request\DirectAuthorisationRequest.cs" />
+    <Compile Include="Internals\Request\DirectCustomerRequest.cs" />
+    <Compile Include="Internals\Request\DirectCustomerSearchRequest.cs" />
+    <Compile Include="Internals\Request\DirectPaymentRequest.cs" />
+    <Compile Include="Internals\Request\DirectRefundRequest.cs" />
+    <Compile Include="Internals\Request\GetAccessCodeResultRequest.cs" />
+    <Compile Include="Internals\Request\SettlementReportRequest.cs" />
+    <Compile Include="Internals\Request\TransactionSearchRequest.cs" />
+    <Compile Include="Internals\Response\BaseResponse.cs" />
+    <Compile Include="Internals\Response\CancelAuthorisationResponse.cs" />
+    <Compile Include="Internals\Response\CaptureAuthBaseResponse.cs" />
+    <Compile Include="Internals\Response\CapturePaymentResponse.cs" />
+    <Compile Include="Internals\Response\CreateAccessCodeResponse.cs" />
+    <Compile Include="Internals\Response\CreateAccessCodeSharedResponse.cs" />
+    <Compile Include="Internals\Response\DirectAuthorisationResponse.cs" />
+    <Compile Include="Internals\Response\DirectCustomerResponse.cs" />
+    <Compile Include="Internals\Response\DirectCustomerSearchResponse.cs" />
+    <Compile Include="Internals\Response\DirectPaymentResponse.cs" />
+    <Compile Include="Internals\Response\DirectRefundResponse.cs" />
+    <Compile Include="Internals\Response\GetAccessCodeResultResponse.cs" />
+    <Compile Include="Internals\Response\SettlementReportResponse.cs" />
+    <Compile Include="Internals\Response\TransactionSearchResponse.cs" />
+    <Compile Include="Internals\Services\IMappingService.cs" />
+    <Compile Include="Internals\Services\IRapidService.cs" />
+    <Compile Include="Internals\Services\MappingService.cs" />
+    <Compile Include="Internals\Services\RapidService.cs" />
+    <Compile Include="IRapidClient.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\BaseResponse.cs" />
+    <Compile Include="Models\CardDetails.cs" />
+    <Compile Include="Models\CodeDetail.cs" />
+    <Compile Include="Models\CreateCustomerResponse.cs" />
+    <Compile Include="Models\CreateTransactionResponse.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\LineItem.cs" />
+    <Compile Include="Models\NamespaceDoc.cs" />
+    <Compile Include="Models\NVPair.cs" />
+    <Compile Include="Models\Option.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PaymentDetails.cs" />
+    <Compile Include="Models\ProcessingDetails.cs" />
+    <Compile Include="Models\QueryCustomerResponse.cs" />
+    <Compile Include="Models\QueryTransactionResponse.cs" />
+    <Compile Include="Models\Refund.cs" />
+    <Compile Include="Models\RefundDetails.cs" />
+    <Compile Include="Models\RefundResultResponse.cs" />
+    <Compile Include="Models\ShippingAddress.cs" />
+    <Compile Include="Models\ShippingDetails.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionFilter.cs" />
+    <Compile Include="Models\TransactionStatus.cs" />
+    <Compile Include="Models\Verification.cs" />
+    <Compile Include="Models\VerificationResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RapidClientFactory.cs" />
+    <Compile Include="RapidSystemErrorCode.cs" />
+    <Compile Include="SystemConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="eWAY.Rapid.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ErrorMessages.en.resx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

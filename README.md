@@ -1,0 +1,76 @@
+# eWAY Rapid .NET Library
+
+A .NET library to integrate with eWAY's Rapid Payment API.
+
+Sign up with eWAY at:
+ - Australia:    https://www.eway.com.au/
+ - New Zealand:  https://eway.io/nz/
+ - UK:           https://eway.io/uk/
+ - Hong Kong:    https://eway.io/hk/
+ - Malaysia:     https://eway.io/my/
+ - Singapore:    https://eway.io/sg/
+
+For testing, get a free eWAY Partner account: https://www.eway.com.au/developers
+
+## Install
+
+### Install with NuGet
+
+The eWAY Rapid .NET library can be easily added to your project with [NuGet](https://www.nuget.org/packages/eWAY.Rapid/):
+
+ 1. In Visual Studio, open the NuGet Package Manager
+ 2. Using the Search box, search for "eWAY"
+ 3. Click "Install" and select the projects you'd like the eWAY package to be available for
+ 4. NuGet will download the eWAY library & dependencies
+ 5. You are set to use eWAY in your project!
+ 
+## Usage
+
+See the [eWAY Rapid API Reference](https://eway.io/api-v3/) for usage details.
+
+A simple Direct payment example:
+
+```csharp
+using eWAY.Rapid;
+using eWAY.Rapid.Enums;
+using eWAY.Rapid.Models;
+
+string APIKEY = "Rapid API Key";
+string PASSWORD = "Rapid API Password";
+string ENDPOINT = "Sandbox";
+
+IRapidClient ewayClient = RapidClientFactory.NewRapidClient(APIKEY, PASSWORD, ENDPOINT);
+
+Transaction transaction = new Transaction(){
+    Customer = new Customer() { 
+        CardDetails = new CardDetails()
+        {
+            Name = "John Smith",
+            Number = "4444333322221111",
+            ExpiryMonth = "11",
+            ExpiryYear = "22",
+            CVN = "123"
+        } 
+    },
+    PaymentDetails = new PaymentDetails()
+    {
+        TotalAmount = 1000
+    },
+    TransactionType = TransactionTypes.Purchase
+};
+
+CreateTransactionResponse response = ewayClient.Create(PaymentMethod.Direct, transaction);
+
+if (response.TransactionStatus != null && response.TransactionStatus.Status == true)
+{
+     int transactionID = response.TransactionStatus.TransactionID;
+}
+```
+
+## Change log
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
