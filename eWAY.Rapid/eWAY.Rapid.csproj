@@ -92,9 +92,9 @@
     <Compile Include="Internals\Models\VerificationResult.cs" />
     <Compile Include="Internals\RapidClient.cs" />
     <Compile Include="Internals\Request\BaseRequest.cs" />
-    <Compile Include="Internals\Request\CancelAuthorisationRequest.cs" />
+    <Compile Include="Internals\Request\DirectCancelAuthorisationRequest.cs" />
     <Compile Include="Internals\Request\CaptureAuthBaseRequest.cs" />
-    <Compile Include="Internals\Request\CapturePaymentRequest.cs" />
+    <Compile Include="Internals\Request\DirectCapturePaymentRequest.cs" />
     <Compile Include="Internals\Request\CreateAccessCodeRequest.cs" />
     <Compile Include="Internals\Request\CreateAccessCodeSharedRequest.cs" />
     <Compile Include="Internals\Request\DirectAuthorisationRequest.cs" />
@@ -106,9 +106,9 @@
     <Compile Include="Internals\Request\SettlementReportRequest.cs" />
     <Compile Include="Internals\Request\TransactionSearchRequest.cs" />
     <Compile Include="Internals\Response\BaseResponse.cs" />
-    <Compile Include="Internals\Response\CancelAuthorisationResponse.cs" />
+    <Compile Include="Internals\Response\DirectCancelAuthorisationResponse.cs" />
     <Compile Include="Internals\Response\CaptureAuthBaseResponse.cs" />
-    <Compile Include="Internals\Response\CapturePaymentResponse.cs" />
+    <Compile Include="Internals\Response\DirectCapturePaymentResponse.cs" />
     <Compile Include="Internals\Response\CreateAccessCodeResponse.cs" />
     <Compile Include="Internals\Response\CreateAccessCodeSharedResponse.cs" />
     <Compile Include="Internals\Response\DirectAuthorisationResponse.cs" />
@@ -126,6 +126,10 @@
     <Compile Include="IRapidClient.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BaseResponse.cs" />
+    <Compile Include="Models\CancelAuthorisationRequest.cs" />
+    <Compile Include="Models\CancelAuthorisationResponse.cs" />
+    <Compile Include="Models\CapturePaymentRequest.cs" />
+    <Compile Include="Models\CapturePaymentResponse.cs" />
     <Compile Include="Models\CardDetails.cs" />
     <Compile Include="Models\CodeDetail.cs" />
     <Compile Include="Models\CreateCustomerResponse.cs" />

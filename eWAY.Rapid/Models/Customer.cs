@@ -1,4 +1,6 @@
-﻿namespace eWAY.Rapid.Models
+﻿using System;
+
+namespace eWAY.Rapid.Models
 {
     /// <summary>
     /// Contains members that define a Rapid token customer (and card) stored in the merchant's account.
@@ -78,6 +80,7 @@
         /// <summary>
         /// The customer’s IP address
         /// </summary>
+        [Obsolete("Please use the CustomerIP in the Transaction object.")]
         public string CustomerIP { get; set; }
     }
 }

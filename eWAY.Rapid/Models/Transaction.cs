@@ -5,7 +5,7 @@ namespace eWAY.Rapid.Models
 {
     /// <summary>
     /// The details of a transaction that will be processed either via the responsive shared page, 
-    /// by transparent redirect, by Direct, or one that is captured from a previous Authorisation transaction.
+    /// by transparent redirect or by Direct.
     /// </summary>
     public class Transaction
     {
@@ -77,6 +77,9 @@ namespace eWAY.Rapid.Models
         /// </summary>
         public string CustomerIP { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the Transaction class
+        /// </summary>
         public Transaction()
         {
             // Default to capture

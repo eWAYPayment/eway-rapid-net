@@ -44,14 +44,14 @@ namespace eWAY.Rapid.Internals.Services
         }
 
 
-        public CancelAuthorisationResponse CancelAuthorisation(CancelAuthorisationRequest request)
+        public DirectCancelAuthorisationResponse CancelAuthorisation(DirectCancelAuthorisationRequest request)
         {
-            return JsonPost<CancelAuthorisationRequest, CancelAuthorisationResponse>(request, CANCEL_AUTHORISATION);
+            return JsonPost<DirectCancelAuthorisationRequest, DirectCancelAuthorisationResponse>(request, CANCEL_AUTHORISATION);
         }
 
-        public CapturePaymentResponse CapturePayment(CapturePaymentRequest request)
+        public DirectCapturePaymentResponse CapturePayment(DirectCapturePaymentRequest request)
         {
-            return JsonPost<CapturePaymentRequest, CapturePaymentResponse>(request, CAPTURE_PAYMENT);
+            return JsonPost<DirectCapturePaymentRequest, DirectCapturePaymentResponse>(request, CAPTURE_PAYMENT);
         }
 
         public CreateAccessCodeResponse CreateAccessCode(CreateAccessCodeRequest request)

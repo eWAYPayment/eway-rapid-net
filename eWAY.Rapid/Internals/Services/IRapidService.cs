@@ -6,8 +6,8 @@ namespace eWAY.Rapid.Internals.Services
 {
     internal interface IRapidService
     {
-        CancelAuthorisationResponse CancelAuthorisation(CancelAuthorisationRequest request);
-        CapturePaymentResponse CapturePayment(CapturePaymentRequest request);
+        DirectCancelAuthorisationResponse CancelAuthorisation(DirectCancelAuthorisationRequest request);
+        DirectCapturePaymentResponse CapturePayment(DirectCapturePaymentRequest request);
         CreateAccessCodeResponse CreateAccessCode(CreateAccessCodeRequest request);
         CreateAccessCodeSharedResponse CreateAccessCodeShared(CreateAccessCodeSharedRequest request);
         GetAccessCodeResultResponse GetAccessCodeResult(GetAccessCodeResultRequest request);

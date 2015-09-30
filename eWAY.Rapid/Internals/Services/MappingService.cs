@@ -73,8 +73,10 @@ namespace eWAY.Rapid.Internals.Services
             Mapper.CreateMap<Refund, DirectRefundRequest>()
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.LineItems))
                 .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
-                .ForMember(dest => dest.CustomerIP, opt => opt.MapFrom(src => src.Customer.CustomerIP))
                 .ForMember(dest => dest.Refund, opt => opt.MapFrom(src => src.RefundDetails));
+
+            Mapper.CreateMap<CapturePaymentRequest, DirectCapturePaymentRequest>().ReverseMap();
+            Mapper.CreateMap<CancelAuthorisationRequest, DirectCancelAuthorisationRequest>().ReverseMap();
 
             Mapper.CreateMap<Transaction, DirectAuthorisationRequest>()
                 .IncludeBase<Transaction, DirectPaymentRequest>();
@@ -158,17 +160,20 @@ namespace eWAY.Rapid.Internals.Services
             Mapper.CreateMap<DirectRefundResponse, RefundResponse>()
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
 
-            Mapper.CreateMap<CapturePaymentResponse, CreateTransactionResponse>()
+            Mapper.CreateMap<DirectCapturePaymentResponse, CreateTransactionResponse>()
                 .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src));
-            Mapper.CreateMap<CapturePaymentResponse, TransactionStatus>()
+            Mapper.CreateMap<DirectCapturePaymentResponse, TransactionStatus>()
                 .ForMember(dest => dest.TransactionID, opt => opt.MapFrom(src => src.TransactionID))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.TransactionStatus));
-            Mapper.CreateMap<CapturePaymentResponse, ProcessingDetails>()
+            Mapper.CreateMap<DirectCapturePaymentResponse, ProcessingDetails>()
                 .ForMember(dest => dest.ResponseCode, opt => opt.MapFrom(src => src.ResponseCode))
                 .ForMember(dest => dest.ResponseMessage, opt => opt.MapFrom(src => src.ResponseMessage));
 
             Mapper.CreateMap<DirectAuthorisationResponse, CreateTransactionResponse>()
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+
+            Mapper.CreateMap<DirectCapturePaymentResponse, CapturePaymentResponse>().ReverseMap();
+            Mapper.CreateMap<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>().ReverseMap();
         }
 
         public static void RegisterCustomMapping()
@@ -275,6 +280,7 @@ namespace eWAY.Rapid.Internals.Services
             Mapper.CreateMap<CardDetails, Models.CardDetails>().ReverseMap();
             Mapper.CreateMap<VerificationResult, Verification>().ReverseMap();
             Mapper.CreateMap<VerificationResult, Models.VerificationResult>().ReverseMap();
+            Mapper.CreateMap<Rapid.Models.Payment, Payment>().ReverseMap();
         }
     }
 }

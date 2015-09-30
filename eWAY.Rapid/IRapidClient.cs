@@ -96,6 +96,21 @@ namespace eWAY.Rapid
         RefundResponse Refund(Refund refund);
 
         /// <summary>
+        /// Complete an authorised transaction with a Capture request
+        /// </summary>
+        /// <param name="captureRequest">Contains the details of the Payment</param>
+        /// <returns></returns>
+        CapturePaymentResponse CapturePayment(CapturePaymentRequest captureRequest);
+
+        /// <summary>
+        /// Cancel an authorised transaction with a Cancel request
+        /// </summary>
+        /// <param name="cancelRequest">Contains the TransactionId of which needs to be cancelled</param>
+        /// <returns></returns>
+        CancelAuthorisationResponse CancelAuthorisation(CancelAuthorisationRequest cancelRequest);
+
+
+        /// <summary>
         /// True if the Client has valid API Key, Password and Endpoint Set.
         /// </summary>
         bool IsValid { get; }

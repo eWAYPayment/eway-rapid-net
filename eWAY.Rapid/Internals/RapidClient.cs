@@ -174,6 +174,20 @@ namespace eWAY.Rapid.Internals
             return _mappingService.Map<DirectRefundResponse, RefundResponse>(response);
         }
 
+        public CapturePaymentResponse CapturePayment(CapturePaymentRequest captureRequest)
+        {
+            var request = _mappingService.Map<CapturePaymentRequest, DirectCapturePaymentRequest>(captureRequest);
+            var response = _rapidService.CapturePayment(request);
+            return _mappingService.Map<DirectCapturePaymentResponse, CapturePaymentResponse>(response);
+        }
+
+        public CancelAuthorisationResponse CancelAuthorisation(CancelAuthorisationRequest cancelRequest)
+        {
+            var request = _mappingService.Map<CancelAuthorisationRequest, DirectCancelAuthorisationRequest>(cancelRequest);
+            var response = _rapidService.CancelAuthorisation(request);
+            return _mappingService.Map<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>(response);
+        }
+
         public bool IsValid
         {
             get

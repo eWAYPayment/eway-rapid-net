@@ -40,6 +40,7 @@ namespace eWAY.Rapid.Tests
                 JobDescription = "Developer",
                 Phone = "09 889 0986",
                 Mobile = "09 889 6542",
+                Email = "demo@example.org",
                 Url = "http://www.ewaypayments.com",
                 CardDetails = cardDetails,
                 Address = address,
@@ -142,9 +143,9 @@ namespace eWAY.Rapid.Tests
                 CompanyName = "Demo Shop 123",
                 Fax = "",
                 Mobile = "09 889 0986",
+                Email = "demo@example.org",
                 Phone = "09 889 6542",
-                Url = "http://www.ewaypayments.com",
-                CustomerIP = "127.0.0.1"
+                Url = "http://www.ewaypayments.com"
             };
             return customer;
         }
@@ -260,7 +261,7 @@ namespace eWAY.Rapid.Tests
                     State = "NSW",
                     PostalCode = "2000",
                     Country = "au",
-                    Email = "",
+                    Email = "demo@example.org",
                     Phone = "09 889 0986",
                     Mobile = "09 889 6542",
                     Comments = "",

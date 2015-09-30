@@ -2,7 +2,7 @@
 
 namespace eWAY.Rapid.Internals.Request
 {
-    internal class CapturePaymentRequest: CaptureAuthBaseRequest
+    internal class DirectCapturePaymentRequest: CaptureAuthBaseRequest
     {
         public Payment Payment { get; set; }
     }

@@ -39,5 +39,9 @@ namespace eWAY.Rapid.Models
         /// (optional) Used by shopping carts/ partners.
         /// </summary>
         public string PartnerID { get; set; }
+        /// <summary>
+        /// The customer’s IP address
+        /// </summary>
+        public string CustomerIP { get; set; }
     }
 }
