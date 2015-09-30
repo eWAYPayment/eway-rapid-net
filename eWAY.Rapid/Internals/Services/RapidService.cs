@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Reflection;
 using eWAY.Rapid.Internals.Enums;
 using eWAY.Rapid.Internals.Request;
 using eWAY.Rapid.Internals.Response;
@@ -169,10 +170,11 @@ namespace eWAY.Rapid.Internals.Services
             return response;
         }
 
-        private void AddHeaders(WebRequest webRequest, string httpMethod)
+        private void AddHeaders(HttpWebRequest webRequest, string httpMethod)
         {
             // add authentication to request
             webRequest.Headers.Add("Authorization", _authenticationHeader);
+            webRequest.UserAgent = "eWAY SDK .NET " + Assembly.GetExecutingAssembly().GetName().Version;
             webRequest.Method = httpMethod;
             webRequest.ContentType = "application/json";
         }

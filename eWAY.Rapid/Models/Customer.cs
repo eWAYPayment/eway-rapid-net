@@ -47,6 +47,10 @@
         /// </summary>
         public string Mobile { get; set; }
         /// <summary>
+        /// Customer's Email Address
+        /// </summary>
+        public string Email { get; set; }
+        /// <summary>
         /// Customer's Fax number
         /// </summary>
         public string Fax { get; set; }
