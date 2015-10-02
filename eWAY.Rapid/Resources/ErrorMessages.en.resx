@@ -789,4 +789,19 @@
   <data name="V6171" xml:space="preserve">
     <value>"Invalid TransactionSearch, Invoice Number not found"</value>
   </data>
+  <data name="S9990" xml:space="preserve">
+    <value>"An invalid endpoint has been set in the eWAY SDK"</value>
+  </data>
+  <data name="S9991" xml:space="preserve">
+    <value>"Invalid credentials have been set in the eWAY SDK"</value>
+  </data>
+  <data name="S9992" xml:space="preserve">
+    <value>"An error occurred connecting to eWAY"</value>
+  </data>
+  <data name="S9993" xml:space="preserve">
+    <value>"Incorrect eWAY API Key or Password"</value>
+  </data>
+  <data name="S9995" xml:space="preserve">
+    <value>"Invalid TransactionFilter"</value>
+  </data>
 </root>
