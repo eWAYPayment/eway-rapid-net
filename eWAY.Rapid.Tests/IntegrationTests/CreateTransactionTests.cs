@@ -60,6 +60,14 @@ namespace eWAY.Rapid.Tests.IntegrationTests
             //Arrange
             var transaction = TestUtil.CreateTransaction();
 
+            // Responsive Shared Fields
+            transaction.LogoUrl = "https://mysite.com/images/logo4eway.jpg";
+            transaction.HeaderText = "My Site Header Text";
+            transaction.CustomerReadOnly = true;
+            transaction.CustomView = "bootstrap";
+            transaction.VerifyCustomerEmail = false;
+            transaction.VerifyCustomerPhone = false;
+
             //Act
             var response = client.Create(PaymentMethod.ResponsiveShared, transaction);
 
