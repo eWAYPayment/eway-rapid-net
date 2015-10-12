@@ -41,11 +41,15 @@ namespace eWAY.Rapid.Internals.Services
         public static void RegisterRequestMapping()
         {
             Mapper.CreateMap<Transaction, DirectPaymentRequest>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.LineItems))
+                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
                 .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.PaymentDetails))
                 .ForMember(dest => dest.Method,
                     opt => opt.MapFrom(src => src.Capture ? Method.ProcessPayment : Method.Authorise));
 
             Mapper.CreateMap<Transaction, CreateAccessCodeRequest>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.LineItems))
+                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
                 .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.PaymentDetails))
                 .ForMember(dest => dest.Method, opt => opt.MapFrom(src => src.Capture
                     ? (src.Customer.TokenCustomerID == null ? Method.ProcessPayment : Method.TokenPayment)

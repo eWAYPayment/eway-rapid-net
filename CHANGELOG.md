@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.1.2.0
+
+ - Added Shipping and Item details to transaction requests
+
 ## 1.1.1.0
 
  - Added SDK error codes to transalation resource for UserDisplayMessage
