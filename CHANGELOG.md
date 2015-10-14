@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.1.3.0
+
+ - Added Shipping and Invoice details to query transaction response
+ 
 ## 1.1.2.0
 
  - Added Shipping and Item details to transaction requests

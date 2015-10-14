@@ -141,18 +141,30 @@ namespace eWAY.Rapid.Internals.Services
                 .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src.Transactions.FirstOrDefault()))
                 .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src.Transactions.FirstOrDefault()))
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+
             Mapper.CreateMap<TransactionResult, QueryTransactionResponse>()
                 .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src));
-            Mapper.CreateMap<TransactionResult, Transaction>();
+
+            Mapper.CreateMap<TransactionResult, Transaction>()
+                .ForMember(dest => dest.ShippingDetails, opt => opt.MapFrom(src => src.ShippingAddress))
+                .ForMember(dest => dest.PaymentDetails, opt => opt.MapFrom(src => src));
+
+            Mapper.CreateMap<TransactionResult, PaymentDetails>()
+                .ForMember(dest => dest.InvoiceReference, opt => opt.MapFrom(src => src.InvoiceReference))
+                .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
+                .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.TotalAmount));
+
             Mapper.CreateMap<TransactionResult, TransactionStatus>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.TransactionStatus))
                 .ForMember(dest => dest.TransactionID, opt => opt.MapFrom(src => src.TransactionID))
                 .ForMember(dest => dest.ProcessingDetails, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.VerificationResult, opt => opt.MapFrom(src => src.Verification))
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.TotalAmount));
+
             Mapper.CreateMap<TransactionResult, TransactionStatus>()
                 .ForMember(dest => dest.ProcessingDetails, opt => opt.MapFrom(src => src));
+
             Mapper.CreateMap<TransactionResult, ProcessingDetails>()
                 .ForMember(dest => dest.AuthorisationCode, opt => opt.MapFrom(src => src.AuthorisationCode))
                 .ForMember(dest => dest.ResponseMessage, opt => opt.MapFrom(src => src.ResponseMessage))
@@ -225,6 +237,9 @@ namespace eWAY.Rapid.Internals.Services
 
             Mapper.CreateMap<Models.Customer, Customer>()
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src));
+
+            Mapper.CreateMap<Models.ShippingAddress, ShippingDetails>()
+                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src));
 
             Mapper.CreateMap<Models.Customer, Address>()
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
