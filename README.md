@@ -1,5 +1,9 @@
 # eWAY Rapid .NET Library
 
+[![Latest version on NuGet][ico-version]][link-nuget]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-appveyor]][link-appveyor]
+
 A .NET library to integrate with eWAY's Rapid Payment API.
 
 Sign up with eWAY at:
@@ -74,3 +78,10 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+[ico-version]: https://img.shields.io/nuget/v/eWAY.Rapid.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-appveyor]: https://img.shields.io/appveyor/ci/eWAY/eway-rapid-net/master.svg?style=flat-square
+
+[link-nuget]: https://www.nuget.org/packages/eWAY.Rapid/
+[link-appveyor]: https://ci.appveyor.com/project/eWAY/eway-rapid-net
