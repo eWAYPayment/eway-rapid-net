@@ -34,7 +34,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>eWAY.Rapid.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
@@ -160,7 +160,7 @@
     <Compile Include="SystemConstants.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="eWAY.Rapid.pfx" />
+    <None Include="eWAY.Rapid.GitHub.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

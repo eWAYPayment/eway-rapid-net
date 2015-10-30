@@ -38,7 +38,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>eWAY.Rapid.Tests.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="eWAY.Rapid.Tests.pfx" />
+    <None Include="eWAY.Rapid.GitHub.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
