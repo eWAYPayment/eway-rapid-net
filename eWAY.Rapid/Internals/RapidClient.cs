@@ -66,6 +66,20 @@ namespace eWAY.Rapid.Internals
             throw new NotSupportedException("Invalid PaymentMethod");
         }
 
+        private CreateCustomerResponse UpdateInternal(PaymentMethod paymentMethod, Customer customer)
+        {
+            switch (paymentMethod)
+            {
+                case PaymentMethod.Direct:
+                    return CreateCustomer<DirectPaymentRequest, DirectPaymentResponse>(_rapidService.UpdateCustomerDirectPayment, customer);
+                case PaymentMethod.TransparentRedirect:
+                    return CreateCustomer<CreateAccessCodeRequest, CreateAccessCodeResponse>(_rapidService.UpdateCustomerCreateAccessCode, customer);
+                case PaymentMethod.ResponsiveShared:
+                    return CreateCustomer<CreateAccessCodeSharedRequest, CreateAccessCodeSharedResponse>(_rapidService.UpdateCustomerCreateAccessCodeShared, customer);
+            }
+            throw new NotSupportedException("Invalid PaymentMethod");
+        }
+
 
         public CreateTransactionResponse Create(PaymentMethod paymentMethod, Transaction transaction)
         {
@@ -78,6 +92,13 @@ namespace eWAY.Rapid.Internals
         {
             if (!IsValid) return SdkInvalidStateErrorsResponse<CreateCustomerResponse>();
             var response = CreateInternal(paymentMethod, customer);
+            return response;
+        }
+
+        public CreateCustomerResponse UpdateCustomer(PaymentMethod paymentMethod, Customer customer)
+        {
+            if (!IsValid) return SdkInvalidStateErrorsResponse<CreateCustomerResponse>();
+            var response = UpdateInternal(paymentMethod, customer);
             return response;
         }
 

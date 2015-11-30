@@ -59,9 +59,21 @@ namespace eWAY.Rapid.Internals.Services
             return JsonPost<CreateAccessCodeRequest, CreateAccessCodeResponse>(request, ACCESS_CODES);
         }
 
+        public CreateAccessCodeResponse UpdateCustomerCreateAccessCode(CreateAccessCodeRequest request)
+        {
+            request.Method = Method.UpdateTokenCustomer;
+            return JsonPut<CreateAccessCodeRequest, CreateAccessCodeResponse>(request, ACCESS_CODES);
+        }
+
         public CreateAccessCodeSharedResponse CreateAccessCodeShared(CreateAccessCodeSharedRequest request)
         {
             return JsonPost<CreateAccessCodeSharedRequest, CreateAccessCodeSharedResponse>(request, ACCESS_CODES_SHARED);
+        }
+
+        public CreateAccessCodeSharedResponse UpdateCustomerCreateAccessCodeShared(CreateAccessCodeSharedRequest request)
+        {
+            request.Method = Method.UpdateTokenCustomer;
+            return JsonPut<CreateAccessCodeSharedRequest, CreateAccessCodeSharedResponse>(request, ACCESS_CODES_SHARED);
         }
 
         public GetAccessCodeResultResponse GetAccessCodeResult(GetAccessCodeResultRequest request)
@@ -72,6 +84,12 @@ namespace eWAY.Rapid.Internals.Services
         public DirectPaymentResponse DirectPayment(DirectPaymentRequest request)
         {
             return JsonPost<DirectPaymentRequest, DirectPaymentResponse>(request, DIRECT_PAYMENT);
+        }
+
+        public DirectPaymentResponse UpdateCustomerDirectPayment(DirectPaymentRequest request)
+        {
+            request.Method = Method.UpdateTokenCustomer;
+            return JsonPut<DirectPaymentRequest, DirectPaymentResponse>(request, DIRECT_PAYMENT);
         }
 
         public DirectAuthorisationResponse DirectAuthorisation(DirectAuthorisationRequest request)
@@ -135,6 +153,38 @@ namespace eWAY.Rapid.Internals.Services
             var response = new TResponse();
             try
             {
+                AddHeaders(webRequest, HttpMethods.POST.ToString());
+                webRequest.ContentLength = Encoding.UTF8.GetByteCount(jsonString);
+                var result = GetWebResponse(webRequest, jsonString);
+                response = JsonConvert.DeserializeObject<TResponse>(result);
+            }
+            catch (WebException ex)
+            {
+                var errors = HandleWebException(ex);
+                response.Errors = errors;
+            }
+            return response;
+        }
+
+        public TResponse JsonPut<TRequest, TResponse>(TRequest request, string method)
+            where TRequest : class
+            where TResponse : BaseResponse, new()
+        {
+            var jsonString = JsonConvert.SerializeObject(request,
+                new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Converters = new JsonConverter[] { new StringEnumConverter() }
+                });
+
+            var endpointUrl = _rapidEndpoint + method;
+            // create a webrequest
+            var webRequest = (HttpWebRequest)WebRequest.Create(endpointUrl);
+            var response = new TResponse();
+            try
+            {
+                //TODO:
+                //This should be a PUT
                 AddHeaders(webRequest, HttpMethods.POST.ToString());
                 webRequest.ContentLength = Encoding.UTF8.GetByteCount(jsonString);
                 var result = GetWebResponse(webRequest, jsonString);

@@ -9,9 +9,12 @@ namespace eWAY.Rapid.Internals.Services
         DirectCancelAuthorisationResponse CancelAuthorisation(DirectCancelAuthorisationRequest request);
         DirectCapturePaymentResponse CapturePayment(DirectCapturePaymentRequest request);
         CreateAccessCodeResponse CreateAccessCode(CreateAccessCodeRequest request);
+        CreateAccessCodeResponse UpdateCustomerCreateAccessCode(CreateAccessCodeRequest request);
         CreateAccessCodeSharedResponse CreateAccessCodeShared(CreateAccessCodeSharedRequest request);
+        CreateAccessCodeSharedResponse UpdateCustomerCreateAccessCodeShared(CreateAccessCodeSharedRequest request);
         GetAccessCodeResultResponse GetAccessCodeResult(GetAccessCodeResultRequest request);
         DirectPaymentResponse DirectPayment(DirectPaymentRequest request);
+        DirectPaymentResponse UpdateCustomerDirectPayment(DirectPaymentRequest request);
         DirectAuthorisationResponse DirectAuthorisation(DirectAuthorisationRequest request);
         DirectCustomerResponse DirectCustomerCreate(DirectCustomerRequest request);
         DirectRefundResponse DirectRefund(DirectRefundRequest request);

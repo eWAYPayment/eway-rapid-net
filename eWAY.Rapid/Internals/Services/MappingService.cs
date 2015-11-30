@@ -91,7 +91,7 @@ namespace eWAY.Rapid.Internals.Services
             //Errors
             Mapper.CreateMap<BaseResponse, Rapid.Models.BaseResponse>()
                 .ForMember(dest => dest.Errors,
-                    opt => opt.ResolveUsing(s => !string.IsNullOrWhiteSpace(s.Errors) ? s.Errors.Split(',').ToList() : null));
+                   opt => opt.ResolveUsing(s => !string.IsNullOrWhiteSpace(s.Errors) ? s.Errors.Split(',').ToList() : null));
 
             Mapper.CreateMap<DirectPaymentResponse, CreateTransactionResponse>()
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
@@ -148,7 +148,24 @@ namespace eWAY.Rapid.Internals.Services
 
             Mapper.CreateMap<TransactionResult, Transaction>()
                 .ForMember(dest => dest.ShippingDetails, opt => opt.MapFrom(src => src.ShippingAddress))
-                .ForMember(dest => dest.PaymentDetails, opt => opt.MapFrom(src => src));
+                .ForMember(dest => dest.PaymentDetails, opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
+                
+            Mapper.CreateMap<TransactionResult, Customer>()
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Customer))
+                .ForMember(dest => dest.Reference, opt => opt.MapFrom(src => src.Customer.Reference))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Customer.Title))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.Customer.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.Customer.LastName))
+                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Customer.CompanyName))
+                .ForMember(dest => dest.JobDescription, opt => opt.MapFrom(src => src.Customer.JobDescription))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Customer.Email))
+                .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.Customer.Phone))
+                .ForMember(dest => dest.Mobile, opt => opt.MapFrom(src => src.Customer.Mobile))
+                .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Customer.Comments))
+                .ForMember(dest => dest.Fax, opt => opt.MapFrom(src => src.Customer.Fax))
+                .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Customer.Url))
+                .ForMember(dest => dest.TokenCustomerID, opt => opt.MapFrom(src => src.TokenCustomerID));
 
             Mapper.CreateMap<TransactionResult, PaymentDetails>()
                 .ForMember(dest => dest.InvoiceReference, opt => opt.MapFrom(src => src.InvoiceReference))
@@ -225,7 +242,9 @@ namespace eWAY.Rapid.Internals.Services
 
             Mapper.CreateMap<Models.Refund, RefundDetails>()
                 .ForMember(dest => dest.OriginalTransactionID, opt => opt.MapFrom(src => int.Parse(src.TransactionID)));
+
             long? nullableTokenId = null;
+
             Mapper.CreateMap<Customer, Models.Customer>()
                 .ForMember(dest => dest.TokenCustomerID, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.TokenCustomerID) ? nullableTokenId : long.Parse(src.TokenCustomerID)))
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))

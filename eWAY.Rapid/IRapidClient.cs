@@ -45,6 +45,15 @@ namespace eWAY.Rapid
         CreateCustomerResponse Create(PaymentMethod paymentMethod, Customer customer);
 
         /// <summary>
+        /// This Method is used to update a token customer for the merchant in their eWAY account. 
+        /// </summary>
+        /// <param name="paymentMethod">Describes where the card details will be coming from that will be saved with the new token customer
+        /// (Direct, Responsive Shared, Transparent Redirect etc).</param>
+        /// <param name="customer">Request containing the Customer details</param>
+        /// <returns>CreateCustomerResponse</returns>
+        CreateCustomerResponse UpdateCustomer(PaymentMethod paymentMethod, Customer customer);
+
+        /// <summary>
         /// This method is used to return the details of a Token Customer. This includes masked Card information for displaying in a UI to a user.
         /// </summary>
         /// <param name="tokenCustomerId">ID returned in the original create request.</param>
