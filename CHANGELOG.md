@@ -2,6 +2,11 @@
 
 All Notable changes will be documented in this file
 
+## 1.2.0.0
+
+ - Added ability to update a token customer using `UpdateCustomer`
+ - Add `SaveCustomer` flag to Transactions to create a token when a transaction is completed.
+
 ## 1.1.3.0
 
  - Added Shipping and Invoice details to query transaction response
