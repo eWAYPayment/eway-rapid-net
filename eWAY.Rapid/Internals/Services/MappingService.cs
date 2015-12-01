@@ -52,7 +52,7 @@ namespace eWAY.Rapid.Internals.Services
                 .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
                 .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.PaymentDetails))
                 .ForMember(dest => dest.Method, opt => opt.MapFrom(src => src.Capture
-                    ? (src.Customer.TokenCustomerID == null ? Method.ProcessPayment : Method.TokenPayment)
+                    ? (src.Customer.TokenCustomerID == null && src.SaveCustomer != true ? Method.ProcessPayment : Method.TokenPayment)
                     : Method.Authorise));
 
             Mapper.CreateMap<Transaction, CapturePaymentRequest>()

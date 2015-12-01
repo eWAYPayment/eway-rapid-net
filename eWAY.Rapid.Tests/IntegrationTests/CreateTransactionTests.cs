@@ -54,6 +54,27 @@ namespace eWAY.Rapid.Tests.IntegrationTests
         }
 
         [TestMethod]
+        public void Transaction_CreateTokenTransactionTransparentRedirect_ReturnValidData()
+        {
+            var client = CreateRapidApiClient();
+            //Arrange
+            var transaction = TestUtil.CreateTransaction();
+            transaction.SaveCustomer = true;
+
+            //Act
+            var response = client.Create(PaymentMethod.TransparentRedirect, transaction);
+
+            //Assert
+            Assert.IsNull(response.Errors);
+            Assert.IsNotNull(response.AccessCode);
+            Assert.IsNotNull(response.FormActionUrl);
+            TestUtil.AssertReturnedCustomerData_VerifyAddressAreEqual(response.Transaction.Customer,
+                transaction.Customer);
+            TestUtil.AssertReturnedCustomerData_VerifyAllFieldsAreEqual(response.Transaction.Customer,
+                transaction.Customer);
+        }
+
+        [TestMethod]
         public void Transaction_CreateTransactionResponsiveShared_ReturnValidData()
         {
             var client = CreateRapidApiClient();

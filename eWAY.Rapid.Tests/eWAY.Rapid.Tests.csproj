@@ -66,6 +66,7 @@
     <Compile Include="IntegrationTests\PreAuthTests.cs" />
     <Compile Include="IntegrationTests\QueryCustomerTests.cs" />
     <Compile Include="IntegrationTests\QueryTransactionTests.cs" />
+    <Compile Include="IntegrationTests\UpdateCustomerTests.cs" />
     <Compile Include="MappingTests\MappingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IntegrationTests\SdkTestBase.cs" />

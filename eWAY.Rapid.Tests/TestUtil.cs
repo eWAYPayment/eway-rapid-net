@@ -17,9 +17,9 @@ namespace eWAY.Rapid.Tests
     public static class TestUtil
     {
         //Third party Merchant
-        internal static Transaction CreateTransaction(bool capture, string tokenId = null)
+        internal static Transaction CreateTransaction(bool capture, string tokenId = null, bool createToken = false)
         {
-            var result = new Transaction { Capture = capture };
+            var result = new Transaction { Capture = capture, SaveCustomer = createToken };
             var cardDetails = new CardDetails() { Name = "John Smith", Number = "4444333322221111", ExpiryMonth = "12", ExpiryYear = "25", CVN = "123" };
             var address = new Address()
             {

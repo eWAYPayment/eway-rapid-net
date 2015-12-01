@@ -19,6 +19,11 @@ namespace eWAY.Rapid.Models
         /// </summary>
         public bool Capture { get; set; }
         /// <summary>
+        /// Set to true to create a token when the payment is processed using Transparent Redirect or Shared Page
+        /// Set to false to process a standard transaction (default)
+        /// </summary>
+        public bool SaveCustomer { get; set; }
+        /// <summary>
         /// Customer details (name address token etc)
         /// </summary>
         public Customer Customer { get; set; }
