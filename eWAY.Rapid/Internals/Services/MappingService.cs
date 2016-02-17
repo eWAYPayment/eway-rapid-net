@@ -136,11 +136,11 @@ namespace eWAY.Rapid.Internals.Services
             Mapper.CreateMap<CreateAccessCodeSharedResponse, CreateTransactionResponse>()
                 .IncludeBase<CreateAccessCodeResponse, CreateTransactionResponse>()
                 .ForMember(dest => dest.SharedPaymentUrl, opt => opt.MapFrom(src => src.SharedPaymentUrl));
-           
+
             Mapper.CreateMap<TransactionSearchResponse, QueryTransactionResponse>()
-                .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src.Transactions.FirstOrDefault()))
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src.Transactions.FirstOrDefault()))
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null))
+                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null));
 
             Mapper.CreateMap<TransactionResult, QueryTransactionResponse>()
                 .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src))

@@ -208,8 +208,16 @@ namespace eWAY.Rapid.Internals.Services
             try
             {
                 AddHeaders(webRequest, HttpMethods.GET.ToString());
-                var result = GetWebResponse(webRequest);
-                response = JsonConvert.DeserializeObject<TResponse>(result);
+                string result = GetWebResponse(webRequest);
+                if (String.IsNullOrEmpty(result))
+                {
+                    var errors = RapidSystemErrorCode.COMMUNICATION_ERROR;
+                    response.Errors = errors;
+                }
+                else
+                {
+                    response = JsonConvert.DeserializeObject<TResponse>(result);
+                }
             }
             catch (WebException ex)
             {

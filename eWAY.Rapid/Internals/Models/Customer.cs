@@ -1,5 +1,3 @@
-using System;
-
 namespace eWAY.Rapid.Internals.Models
 {
     internal class Customer
