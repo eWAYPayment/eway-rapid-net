@@ -1,4 +1,7 @@
-﻿namespace eWAY.Rapid.Models
+using System.Collections.Generic;
+using System.Linq;
+
+namespace eWAY.Rapid.Models
 {
     /// <summary>
     /// The response from eWAY will contain details as to whether the transaction succeeded or failed
@@ -21,5 +24,13 @@
         /// Whether the capture transaction succeeded
         /// </summary>
         public bool TransactionStatus { get; set; }
+
+        /// <summary>
+        /// The bank/gateway response message as a List
+        /// </summary>
+        public List<string> getResponseMessages()
+        {
+            return ResponseMessage.Replace(" ", "").Split(',').ToList();
+        }
     }
 }

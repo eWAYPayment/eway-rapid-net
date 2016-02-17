@@ -1,4 +1,6 @@
-﻿namespace eWAY.Rapid.Internals.Models
+using System;
+
+namespace eWAY.Rapid.Internals.Models
 {
     internal class Customer
     {
@@ -21,5 +23,11 @@
         public string Comments { get;set; }
         public string Fax { get;set; }
         public string Url { get; set; }
+
+        public string getTokenCustomerID()
+        {
+            return TokenCustomerID.ToString();
+        }
+
     }
 }

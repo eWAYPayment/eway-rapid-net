@@ -1,4 +1,5 @@
-﻿using eWAY.Rapid.Enums;
+using eWAY.Rapid.Enums;
+using System.Linq;
 
 namespace eWAY.Rapid.Models
 {
@@ -41,5 +42,21 @@ namespace eWAY.Rapid.Models
         /// All the various bank/gateway specific details associated with the transaction.
         /// </summary>
         public ProcessingDetails ProcessingDetails { get; set; }
+
+        /// <summary>
+        /// Check if the response contains a fraud code
+        /// </summary>
+        public bool hasFraudCode()
+        {
+            return ProcessingDetails.getResponseMessages().Any(s => s.StartsWith("F"));
+        }
+
+        /// <summary>
+        /// Fetches the TransactionID as a string
+        /// </summary>
+        public string getTransactionID()
+        {
+            return TransactionID.ToString();
+        }
     }
 }

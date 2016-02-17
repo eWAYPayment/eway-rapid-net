@@ -1,4 +1,7 @@
-﻿namespace eWAY.Rapid.Models
+using System.Collections.Generic;
+using System.Linq;
+
+namespace eWAY.Rapid.Models
 {
     /// <summary>
     /// Combines together all the bank/gateway specific status information for a transaction
@@ -17,5 +20,13 @@
         /// The bank/gateway response message
         /// </summary>
         public string ResponseMessage { get; set; }
+
+        /// <summary>
+        /// The bank/gateway response message as a List
+        /// </summary>
+        public List<string> getResponseMessages()
+        {
+            return ResponseMessage.Replace(" ", "").Split(',').ToList();
+        }
     }
 }
