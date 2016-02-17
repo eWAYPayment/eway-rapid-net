@@ -2,6 +2,13 @@
 
 All Notable changes will be documented in this file
 
+## 1.2.1.0
+ 
+ - Dependencies tightened to AutoMapper 3.3.1 - 4.1.1
+ - Improved error handling for empty responses
+ - Added convenience functions such as `hasFraudCode` and `getResponseMessages`
+ - Changed create and update customer to use MOTO for TransactionType to support not sending the CVN.
+
 ## 1.2.0.0
 
  - Added ability to update a token customer using `UpdateCustomer`
