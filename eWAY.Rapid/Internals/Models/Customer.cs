@@ -24,7 +24,7 @@ namespace eWAY.Rapid.Internals.Models
 
         public string getTokenCustomerID()
         {
-            return TokenCustomerID.ToString();
+            return (TokenCustomerID == null) ? null : TokenCustomerID.ToString();
         }
 
     }
