@@ -207,6 +207,11 @@ namespace eWAY.Rapid.Internals.Services
 
             Mapper.CreateMap<DirectCapturePaymentResponse, CapturePaymentResponse>().ReverseMap();
             Mapper.CreateMap<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>().ReverseMap();
+
+            Mapper.CreateMap<DirectSettlementSearchResponse, SettlementSearchResponse>()
+                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+
+            Mapper.CreateMap<DirectSettlementSearchResponse, SettlementSearchResponse>().ReverseMap();
         }
 
         public static void RegisterCustomMapping()
@@ -319,6 +324,9 @@ namespace eWAY.Rapid.Internals.Services
             Mapper.CreateMap<VerificationResult, Verification>().ReverseMap();
             Mapper.CreateMap<VerificationResult, Models.VerificationResult>().ReverseMap();
             Mapper.CreateMap<Rapid.Models.Payment, Payment>().ReverseMap();
+            Mapper.CreateMap<Rapid.Models.SettlementSummary, Models.SettlementSummary>().ReverseMap();
+            Mapper.CreateMap<Rapid.Models.SettlementTransaction, Models.SettlementTransaction>().ReverseMap();
+            Mapper.CreateMap<Rapid.Models.BalanceSummaryPerCardType, Models.BalanceSummaryPerCardType>().ReverseMap();
         }
     }
 }

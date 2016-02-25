@@ -5,7 +5,6 @@ namespace eWAY.Rapid.Internals.Models
     internal class SettlementTransaction
     {
         public string SettlementID { get; set; }
-        public string CurrencyCardTypeTransactionID { get; set; }
         public int eWAYCustomerID { get; set; }
         public string Currency { get; set; }
         public int TransactionID { get; set; }

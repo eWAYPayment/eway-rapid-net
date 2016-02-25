@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
+using System.Reflection;
 using eWAY.Rapid.Enums;
 using eWAY.Rapid.Internals.Request;
 using eWAY.Rapid.Internals.Response;
@@ -207,6 +209,28 @@ namespace eWAY.Rapid.Internals
             var request = _mappingService.Map<CancelAuthorisationRequest, DirectCancelAuthorisationRequest>(cancelRequest);
             var response = _rapidService.CancelAuthorisation(request);
             return _mappingService.Map<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>(response);
+        }
+
+        public SettlementSearchResponse SettlementSearch(SettlementSearchRequest settlementSearchRequest)
+        {
+            if (!IsValid) return SdkInvalidStateErrorsResponse<SettlementSearchResponse>();
+
+            var query = HttpUtility.ParseQueryString(string.Empty);
+            var properties = settlementSearchRequest.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var prop in properties)
+            {
+                var value = prop.GetValue(settlementSearchRequest, null);
+                if (value != null && !String.IsNullOrWhiteSpace(value.ToString()))
+                {
+                    if ((!prop.Name.Equals("Page") && !prop.Name.Equals("PageSize")) || !value.Equals(0))
+                    {
+                        query[prop.Name] = value.ToString();
+                    }
+                }
+            }
+
+            var response = _rapidService.SettlementSearch(query.ToString());
+            return _mappingService.Map<DirectSettlementSearchResponse, SettlementSearchResponse>(response);
         }
 
         public bool IsValid

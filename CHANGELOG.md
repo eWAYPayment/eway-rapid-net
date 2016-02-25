@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.3.0.0
+
+ - Added Settlement Search
+
 ## 1.2.1.0
  
  - Dependencies tightened to AutoMapper 3.3.1 - 4.1.1

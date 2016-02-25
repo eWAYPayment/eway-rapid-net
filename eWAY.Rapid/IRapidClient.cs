@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using eWAY.Rapid.Enums;
-using eWAY.Rapid.Internals.Response;
 using eWAY.Rapid.Models;
 
 namespace eWAY.Rapid
@@ -108,16 +107,22 @@ namespace eWAY.Rapid
         /// Complete an authorised transaction with a Capture request
         /// </summary>
         /// <param name="captureRequest">Contains the details of the Payment</param>
-        /// <returns></returns>
+        /// <returns>CapturePaymentResponse</returns>
         CapturePaymentResponse CapturePayment(CapturePaymentRequest captureRequest);
 
         /// <summary>
         /// Cancel an authorised transaction with a Cancel request
         /// </summary>
         /// <param name="cancelRequest">Contains the TransactionId of which needs to be cancelled</param>
-        /// <returns></returns>
+        /// <returns>CancelAuthorisationResponse</returns>
         CancelAuthorisationResponse CancelAuthorisation(CancelAuthorisationRequest cancelRequest);
 
+        /// <summary>
+        /// Perform a search of settlements with a given filter
+        /// </summary>
+        /// <param name="settlementSearchRequest">Contains the filter to search settlements by</param>
+        /// <returns>SettlementSearchResponse</returns>
+        SettlementSearchResponse SettlementSearch(SettlementSearchRequest settlementSearchRequest);
 
         /// <summary>
         /// True if the Client has valid API Key, Password and Endpoint Set.

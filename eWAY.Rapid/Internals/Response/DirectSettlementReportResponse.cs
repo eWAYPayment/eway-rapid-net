@@ -2,7 +2,7 @@
 
 namespace eWAY.Rapid.Internals.Response
 {
-    internal class SettlementReportResponse: BaseResponse
+    internal class DirectSettlementSearchResponse: BaseResponse
     {
         public SettlementSummary[] SettlementSummaries { get;set; }
         public SettlementTransaction[] SettlementTransactions { get; set; }

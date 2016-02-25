@@ -65,6 +65,7 @@
     <Compile Include="IntegrationTests\DirectRefundTests.cs" />
     <Compile Include="IntegrationTests\PreAuthTests.cs" />
     <Compile Include="IntegrationTests\QueryCustomerTests.cs" />
+    <Compile Include="IntegrationTests\SettlementSearchTests.cs" />
     <Compile Include="IntegrationTests\QueryTransactionTests.cs" />
     <Compile Include="IntegrationTests\UpdateCustomerTests.cs" />
     <Compile Include="MappingTests\MappingTests.cs" />

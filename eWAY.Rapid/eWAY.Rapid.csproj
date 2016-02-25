@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\eWAY.Rapid.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -49,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,6 +65,8 @@
     <Compile Include="Enums\NamespaceDoc.cs" />
     <Compile Include="Enums\PaymentMethod.cs" />
     <Compile Include="Enums\RequestMethod.cs" />
+    <Compile Include="Enums\CardType.cs" />
+    <Compile Include="Enums\SettlementSearchMode.cs" />
     <Compile Include="Enums\ShippingMethod.cs" />
     <Compile Include="Enums\TransactionTypes.cs" />
     <Compile Include="Enums\VerifyStatus.cs" />
@@ -72,7 +76,6 @@
     <Compile Include="Internals\Enums\HttpMethods.cs" />
     <Compile Include="Internals\Enums\Method.cs" />
     <Compile Include="Internals\Enums\PaymentType.cs" />
-    <Compile Include="Internals\Enums\SettlementReportMode.cs" />
     <Compile Include="Internals\Enums\TransactionTypes.cs" />
     <Compile Include="Internals\Models\BalanceSummaryPerCardType.cs" />
     <Compile Include="Internals\Models\BeagleVerifyResult.cs" />
@@ -103,7 +106,6 @@
     <Compile Include="Internals\Request\DirectPaymentRequest.cs" />
     <Compile Include="Internals\Request\DirectRefundRequest.cs" />
     <Compile Include="Internals\Request\GetAccessCodeResultRequest.cs" />
-    <Compile Include="Internals\Request\SettlementReportRequest.cs" />
     <Compile Include="Internals\Request\TransactionSearchRequest.cs" />
     <Compile Include="Internals\Response\BaseResponse.cs" />
     <Compile Include="Internals\Response\DirectCancelAuthorisationResponse.cs" />
@@ -117,7 +119,7 @@
     <Compile Include="Internals\Response\DirectPaymentResponse.cs" />
     <Compile Include="Internals\Response\DirectRefundResponse.cs" />
     <Compile Include="Internals\Response\GetAccessCodeResultResponse.cs" />
-    <Compile Include="Internals\Response\SettlementReportResponse.cs" />
+    <Compile Include="Internals\Response\DirectSettlementReportResponse.cs" />
     <Compile Include="Internals\Response\TransactionSearchResponse.cs" />
     <Compile Include="Internals\Services\IMappingService.cs" />
     <Compile Include="Internals\Services\IRapidService.cs" />
@@ -125,7 +127,10 @@
     <Compile Include="Internals\Services\RapidService.cs" />
     <Compile Include="IRapidClient.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\BalanceSummaryPerCardType.cs" />
     <Compile Include="Models\BaseResponse.cs" />
+    <Compile Include="Models\SettlementReportResponse.cs" />
+    <Compile Include="Models\SettlementSearchRequest.cs" />
     <Compile Include="Models\CancelAuthorisationRequest.cs" />
     <Compile Include="Models\CancelAuthorisationResponse.cs" />
     <Compile Include="Models\CapturePaymentRequest.cs" />
@@ -147,6 +152,8 @@
     <Compile Include="Models\Refund.cs" />
     <Compile Include="Models\RefundDetails.cs" />
     <Compile Include="Models\RefundResultResponse.cs" />
+    <Compile Include="Models\SettlementSummary.cs" />
+    <Compile Include="Models\SettlementTransaction.cs" />
     <Compile Include="Models\ShippingAddress.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
     <Compile Include="Models\Transaction.cs" />

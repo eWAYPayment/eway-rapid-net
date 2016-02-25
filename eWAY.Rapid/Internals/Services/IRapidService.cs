@@ -23,6 +23,7 @@ namespace eWAY.Rapid.Internals.Services
         TransactionSearchResponse QueryTransaction(string accessCode);
         TransactionSearchResponse QueryInvoiceRef(string invoiceRef);
         TransactionSearchResponse QueryInvoiceNumber(string invoiceNumber);
+        DirectSettlementSearchResponse SettlementSearch(string request);
 
         string GetRapidEndpoint();
         void SetRapidEndpoint(string value);

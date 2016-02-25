@@ -33,6 +33,7 @@ namespace eWAY.Rapid.Internals.Services
         private const string QUERY_CUSTOMER = "Customer/{0}";
         private const string TRANSACTION_FILTER_INVOICE_NUMBER = "Transaction/InvoiceNumber/{0}";
         private const string TRANSACTION_FILTER_INVOICE_REF = "Transaction/InvoiceRef/{0}";
+        private const string SETTLEMENT_SEARCH = "Search/Settlement?{0}";
 
 
         public IMappingService MappingService { get; set; }
@@ -134,6 +135,12 @@ namespace eWAY.Rapid.Internals.Services
         {
             var method = string.Format(TRANSACTION_FILTER_INVOICE_NUMBER, invoiceNumber);
             return JsonGet<TransactionSearchResponse>(method);
+        }
+
+        public DirectSettlementSearchResponse SettlementSearch(string request)
+        {
+            var method = string.Format(SETTLEMENT_SEARCH, request);
+            return JsonGet<DirectSettlementSearchResponse>(method);
         }
 
         public TResponse JsonPost<TRequest, TResponse>(TRequest request, string method)
