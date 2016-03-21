@@ -20,7 +20,8 @@ For testing, get a free eWAY Partner account: https://www.eway.com.au/developers
 
 ### Install with NuGet
 
-The eWAY Rapid .NET library can be easily added to your project with [NuGet](https://www.nuget.org/packages/eWAY.Rapid/):
+The eWAY Rapid .NET library can be easily added to your project with [NuGet](https://www.nuget.org/packages/eWAY.Rapid/).
+Versions 4.5 or above of .NET are supported at this time.
 
  1. In Visual Studio, open the NuGet Package Manager
  2. Using the Search box, search for "eWAY"
