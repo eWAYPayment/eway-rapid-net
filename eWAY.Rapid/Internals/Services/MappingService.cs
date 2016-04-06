@@ -30,12 +30,22 @@ namespace eWAY.Rapid.Internals.Services
             return Mapper.Map<TSource, TDest>(obj);
         }
 
+        private static bool _mappingsHaveBeenRegistered = false;
+        private static readonly object _registerMappingsMutex = new object();
+
         public static void RegisterMapping()
         {
-            RegisterRequestMapping();
-            RegisterResponseMapping();
-            RegisterCustomMapping();
-            RegisterEntitiesMapping();
+            if (_mappingsHaveBeenRegistered) return;
+            lock (_registerMappingsMutex)
+            {
+                if (!_mappingsHaveBeenRegistered)
+                {
+                    RegisterRequestMapping();
+                    RegisterResponseMapping();
+                    RegisterCustomMapping();
+                    RegisterEntitiesMapping();
+                }
+            }
         }
 
         public static void RegisterRequestMapping()
