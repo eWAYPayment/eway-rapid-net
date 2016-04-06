@@ -44,6 +44,7 @@ namespace eWAY.Rapid.Internals.Services
                     RegisterResponseMapping();
                     RegisterCustomMapping();
                     RegisterEntitiesMapping();
+                    _mappingsHaveBeenRegistered = true;
                 }
             }
         }
