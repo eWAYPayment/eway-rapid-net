@@ -18,5 +18,14 @@
         public Customer Customer { get; set; }
         public string CustomerNote { get; set; }
         public ShippingAddress ShippingAddress { get; set; }
-    }
+
+        //Rapid v40 fields
+        public string TransactionDateTime { get; set; }
+        public string FraudAction { get; set; }
+        public bool? TransactionCaptured { get; set; }
+        public string CurrencyCode { get; set; }
+        public int? Source { get; set; }
+        public int? MaxRefund { get; set; }
+        public int? OriginalTransactionId { get; set; }
+}
 }

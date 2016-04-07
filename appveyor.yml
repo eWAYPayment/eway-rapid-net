@@ -1,0 +1,8 @@
+
+before_build:
+  - nuget restore
+
+environment:
+  matrix:
+  - APIVERSION: 31
+  - APIVERSION: 40

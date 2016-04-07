@@ -26,5 +26,9 @@
         /// The AccessCode for this transaction (can be used to call query transaction for searching before the transaction has completed processing)
         /// </summary>
         public string AccessCode { get; set; }
+        /// <summary>
+        /// (Rapid v40 only) A token used to configure AMEX Express Checkout
+        /// </summary>
+        public string AmexECEncryptedData { get; set; }
     }
 }

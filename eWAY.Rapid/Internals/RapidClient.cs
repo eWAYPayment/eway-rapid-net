@@ -35,6 +35,11 @@ namespace eWAY.Rapid.Internals
             _rapidService.SetCredentials(apiKey, password);
         }
 
+        public void SetVersion(int version)
+        {
+            _rapidService.SetVersion(version);
+        }
+
         private CreateTransactionResponse CreateInternal(PaymentMethod paymentMethod, Transaction transaction)
         {
             switch (paymentMethod)

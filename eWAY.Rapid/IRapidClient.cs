@@ -17,6 +17,12 @@ namespace eWAY.Rapid
         void SetCredentials(string apiKey, string password);
 
         /// <summary>
+        /// Set the Rapid API version to use
+        /// </summary>
+        /// <param name="version">Rapid API version</param>
+        void SetVersion(int version);
+
+        /// <summary>
         /// This Method is used to create a transaction for the merchant in their eWAY account
         /// </summary>
         /// <param name="paymentMethod">

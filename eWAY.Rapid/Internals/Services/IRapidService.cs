@@ -28,6 +28,7 @@ namespace eWAY.Rapid.Internals.Services
         string GetRapidEndpoint();
         void SetRapidEndpoint(string value);
         void SetCredentials(string apiKey, string password);
+        void SetVersion(int version);
         bool IsValid();
         List<string> GetErrorCodes();
     }

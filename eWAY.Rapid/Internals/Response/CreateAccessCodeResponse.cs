@@ -9,5 +9,6 @@ namespace eWAY.Rapid.Internals.Response
         public Payment Payment { get;set; }
         public string FormActionURL { get;set; }
         public string CompleteCheckoutURL { get; set; }
+        public string AmexECEncryptedData { get; set; }
     }
 }

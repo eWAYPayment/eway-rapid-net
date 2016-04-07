@@ -160,5 +160,38 @@ namespace eWAY.Rapid.Tests.IntegrationTests
             Assert.IsNotNull(queryByInvoiceRefResponse.Errors);
             Assert.AreEqual(queryByInvoiceRefResponse.Errors.FirstOrDefault(), "V6171");
         }
+
+        [TestMethod]
+        public void QueryTransaction_Rapidv40_Test()
+        {
+            string version = System.Environment.GetEnvironmentVariable("APIVERSION");
+            int v;
+
+            if (int.TryParse(version, out v) && v > 31)
+            {
+                var client = CreateRapidApiClient();
+                //Arrange
+                var transaction = TestUtil.CreateTransaction();
+
+                //Act
+                var response = client.Create(PaymentMethod.Direct, transaction);
+                var filter = new TransactionFilter() { TransactionID = response.TransactionStatus.TransactionID };
+                var queryResponse = client.QueryTransaction(filter);
+                var queryResponse2 = client.QueryTransaction(response.TransactionStatus.TransactionID);
+                //Assert
+                Assert.IsNotNull(queryResponse);
+                Assert.IsNotNull(queryResponse2);
+                Assert.AreEqual(response.TransactionStatus.TransactionID, queryResponse.TransactionStatus.TransactionID);
+                Assert.AreEqual(response.TransactionStatus.TransactionID, queryResponse2.TransactionStatus.TransactionID);
+                Assert.AreEqual(response.TransactionStatus.Total, queryResponse2.TransactionStatus.Total);
+
+                Assert.AreEqual("036", queryResponse2.Transaction.CurrencyCode);
+                Assert.AreEqual(response.TransactionStatus.Total, queryResponse2.Transaction.MaxRefund);
+            } else
+            {
+                Assert.Inconclusive();
+            }
+
+        }
     }
 }

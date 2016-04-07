@@ -19,6 +19,7 @@ namespace eWAY.Rapid.Internals.Services
     {
         private string _rapidEndpoint;
         private string _authenticationHeader;
+        private int? _version;
         private bool _isValidEndPoint;
         private bool _isValidCredentials;
 
@@ -242,6 +243,11 @@ namespace eWAY.Rapid.Internals.Services
             webRequest.UserAgent = "eWAY SDK .NET " + Assembly.GetExecutingAssembly().GetName().Version;
             webRequest.Method = httpMethod;
             webRequest.ContentType = "application/json";
+
+            if (_version.HasValue)
+            {
+                webRequest.Headers.Add("X-EWAY-APIVERSION", _version.ToString());
+            }
         }
 
         private string HandleWebException(WebException ex)
@@ -319,6 +325,11 @@ namespace eWAY.Rapid.Internals.Services
         {
             _authenticationHeader = "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(apiKey + ":" + password));
             _isValidCredentials = !string.IsNullOrWhiteSpace(apiKey) && !string.IsNullOrWhiteSpace(password);
+        }
+
+        public void SetVersion(int version)
+        {
+            _version = version;
         }
 
         public bool IsValid()

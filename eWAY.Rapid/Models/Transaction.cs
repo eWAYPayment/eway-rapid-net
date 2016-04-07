@@ -118,6 +118,35 @@ namespace eWAY.Rapid.Models
         public string LogoUrl { get; set; }
 
         /// <summary>
+        /// (v40 query response only) The date and time the transaction took place
+        /// </summary>
+        public string TransactionDateTime { get; set; }
+        /// <summary>
+        /// (v40 query response only) The fraud action that occurred if any. One of NotChallenged, Allow, Review, PreAuth, Processed, Approved, Block
+        /// </summary>
+        public string FraudAction { get; set; }
+        /// <summary>
+        /// (v40 query response only) True if funds were captured in the transaction.
+        /// </summary>
+        public bool? TransactionCaptured { get; set; }
+        /// <summary>
+        /// (v40 query response only) The ISO 4217 numeric currency code (e.g. AUD = 036)
+        /// </summary>
+        public string CurrencyCode { get; set; }
+        /// <summary>
+        /// (v40 query response only) Reserved for future use
+        /// </summary>
+        public int? Source { get; set; }
+        /// <summary>
+        /// (v40 query response only)  The maximum amount that could be refunded from this transaction
+        /// </summary>
+        public int? MaxRefund { get; set; }
+        /// <summary>
+        /// (v40 query response only) Contains the original transaction ID if the queried transaction is a refund
+        /// </summary>
+        public int? OriginalTransactionId { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the Transaction class
         /// </summary>
         public Transaction()
