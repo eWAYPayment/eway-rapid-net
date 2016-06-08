@@ -78,7 +78,14 @@ namespace eWAY.Rapid
         /// </remarks>
         QueryTransactionResponse QueryTransaction(TransactionFilter filter);
         /// <summary>
-        /// Gets transaction information given an eWAY transaction ID
+        /// Gets transaction information given an int eWAY transaction ID
+        /// (wrapper for the version which uses long)
+        /// </summary>
+        /// <param name="transactionId">eWAY Transaction ID for the transaction</param>
+        /// <returns>QueryTransactionResponse</returns>
+        QueryTransactionResponse QueryTransaction(int transactionId);
+        /// <summary>
+        /// Gets transaction information given a long eWAY transaction ID
         /// </summary>
         /// <param name="transactionId">eWAY Transaction ID for the transaction</param>
         /// <returns>QueryTransactionResponse</returns>

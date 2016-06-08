@@ -166,6 +166,11 @@ namespace eWAY.Rapid.Internals
             return _mappingService.Map<TransactionSearchResponse, QueryTransactionResponse>(response);
         }
 
+        public QueryTransactionResponse QueryTransaction(int transactionId)
+        {
+            return QueryTransaction(Convert.ToInt64(transactionId));
+        }
+
         public QueryTransactionResponse QueryTransaction(long transactionId)
         { 
             var response = _rapidService.QueryTransaction(transactionId);
