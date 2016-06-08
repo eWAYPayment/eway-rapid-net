@@ -19,5 +19,6 @@ namespace eWAY.Rapid.Internals.Request
         public Method Method { get; set; }
         public TransactionTypes TransactionType { get; set; }
         public string ThirdPartyWalletID { get; set; }
+        public string SecuredCardData { get; set; }
     } 
 }

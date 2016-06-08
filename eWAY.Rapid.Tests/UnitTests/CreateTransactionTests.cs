@@ -194,7 +194,7 @@ namespace eWAY.Rapid.Tests.UnitTests
             DirectPaymentRequest assertRequest = null;
             //Arrange
             var transaction = TestUtil.CreateTransaction(true);
-            transaction.ThirdPartyWalletID = "123123123";
+            transaction.SecuredCardData = "123123123";
             mockRapidApiClient.Setup(x => x.IsValid()).Returns(true);
             mockRapidApiClient.Setup(x => x.DirectPayment(It.IsAny<DirectPaymentRequest>()))
                 .Callback<DirectPaymentRequest>(i => assertRequest = i)
@@ -214,7 +214,7 @@ namespace eWAY.Rapid.Tests.UnitTests
             var rapidSdkClient = new RapidClient(mockRapidApiClient.Object);
             //Arrange
             var transaction = TestUtil.CreateTransaction(false);
-            transaction.ThirdPartyWalletID = "123123123";
+            transaction.SecuredCardData = "123123123";
             mockRapidApiClient.Setup(x => x.IsValid()).Returns(true);
             mockRapidApiClient.Setup(x => x.DirectAuthorisation(It.IsAny<DirectAuthorisationRequest>())).Returns(new DirectAuthorisationResponse()).Verifiable();
             //Act

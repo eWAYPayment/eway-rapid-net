@@ -6,5 +6,6 @@ namespace eWAY.Rapid.Internals.Request
     {
         public DirectTokenCustomer Customer { get; set; }
         public string ThirdPartyWalletID { get; set; }
+        public string SecuredCardData { get; set; }
     }
 }

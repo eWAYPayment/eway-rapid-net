@@ -52,9 +52,13 @@ namespace eWAY.Rapid.Models
         /// </summary>
         public string PartnerID { get; set; }
         /// <summary>
-        /// (optional) Used when a Third Party Digital wallet will be supplying the Card Details.
+        /// (optional) This field has been deprecated, please use SecuredCardData instead
         /// </summary>
         public string ThirdPartyWalletID { get; set; }
+        /// <summary>
+        /// (optional) Card data ID, used for Secure Fields, Visa Checkout, AMEX Express Checkout and Android Pay
+        /// </summary>
+        public string SecuredCardData { get; set; }
         /// <summary>
         /// (optional) Used with a PaymentType of Authorisation. This specifies the original authorisation that the funds are to be captured from.
         /// </summary>
