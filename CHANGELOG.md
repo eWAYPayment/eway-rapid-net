@@ -2,6 +2,13 @@
 
 All Notable changes will be documented in this file
 
+## 1.4.0.0
+
+ - Now thread safe (thanks @davidmiani)
+ - Added ability to set the Rapid API version and new associated fields
+ - Added `SecuredCardData` field and marked `ThirdPartyWalletID` as deprecated
+ - Added wrapper `QueryTransaction` method which accepts an int instead of long
+
 ## 1.3.0.0
 
  - Added Settlement Search

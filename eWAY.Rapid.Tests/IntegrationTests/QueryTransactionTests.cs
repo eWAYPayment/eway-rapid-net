@@ -164,10 +164,7 @@ namespace eWAY.Rapid.Tests.IntegrationTests
         [TestMethod]
         public void QueryTransaction_Rapidv40_Test()
         {
-            string version = System.Environment.GetEnvironmentVariable("APIVERSION");
-            int v;
-
-            if (int.TryParse(version, out v) && v > 31)
+            if (GetVersion() > 31)
             {
                 var client = CreateRapidApiClient();
                 //Arrange
