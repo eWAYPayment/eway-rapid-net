@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.5.0
+
+ - Updated dependencies: Newtonsoft.Json to v9.0.1 and Automapper to v4.1.1
+
 ## 1.4.0.0
 
  - Now thread safe (thanks @davidmiani)

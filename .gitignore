@@ -20,3 +20,9 @@ nCrunchTemp_*
 **/packages/*
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# Others
+*.pfx
