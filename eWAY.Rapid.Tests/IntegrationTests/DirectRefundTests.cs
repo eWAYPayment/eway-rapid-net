@@ -24,7 +24,7 @@ namespace eWAY.Rapid.Tests.IntegrationTests
             Assert.IsTrue(refundResponse.TransactionID > 0);
             TestUtil.AssertReturnedCustomerData_VerifyCardDetailsAreEqual(refund.Customer, refundResponse.Customer);
             TestUtil.AssertReturnedCustomerData_VerifyAllFieldsAreEqual(refund.Customer, refundResponse.Customer);
-            TestUtil.AssertReturnedCustomerData_VerifyAddressAreEqual(refund.Customer, refundResponse.Customer);
+            //TestUtil.AssertReturnedCustomerData_VerifyAddressAreEqual(refund.Customer, refundResponse.Customer);
         }
 
         [TestMethod]

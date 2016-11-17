@@ -38,8 +38,8 @@
     <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -119,6 +119,7 @@
     <Compile Include="Internals\Response\GetAccessCodeResultResponse.cs" />
     <Compile Include="Internals\Response\DirectSettlementReportResponse.cs" />
     <Compile Include="Internals\Response\TransactionSearchResponse.cs" />
+    <Compile Include="Internals\Services\MappingProfile.cs" />
     <Compile Include="Internals\Services\IMappingService.cs" />
     <Compile Include="Internals\Services\IRapidService.cs" />
     <Compile Include="Internals\Services\MappingService.cs" />

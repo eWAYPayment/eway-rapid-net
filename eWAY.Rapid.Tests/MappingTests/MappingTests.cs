@@ -3,6 +3,7 @@ using eWAY.Rapid.Internals.Response;
 using eWAY.Rapid.Internals.Services;
 using eWAY.Rapid.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using BaseResponse = eWAY.Rapid.Internals.Response.BaseResponse;
 
 namespace eWAY.Rapid.Tests.MappingTests
@@ -29,6 +30,7 @@ namespace eWAY.Rapid.Tests.MappingTests
             };
             var dest = _mappingService.Map<BaseResponse,
                 Models.BaseResponse>(source);
+
             Assert.IsNull(dest.Errors);
         }
 

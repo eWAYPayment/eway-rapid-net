@@ -283,6 +283,10 @@ namespace eWAY.Rapid.Tests
         //Assertion helpers
         internal static void AssertReturnedCustomerData_VerifyAddressAreEqual(Customer responseCustomer, Customer requestCustomer)
         {
+            if (responseCustomer.Address == null)
+            {
+                Assert.Inconclusive("Response Customer Address not found.");
+            }
             Assert.AreEqual(responseCustomer.Address.State, requestCustomer.Address.State);
             Assert.AreEqual(responseCustomer.Address.City, requestCustomer.Address.City);
             Assert.AreEqual(responseCustomer.Address.Country, requestCustomer.Address.Country);

@@ -82,5 +82,44 @@ namespace eWAY.Rapid.Models
         /// </summary>
         [Obsolete("Please use the CustomerIP in the Transaction object.")]
         public string CustomerIP { get; set; }
+        /// <summary>
+        /// (optional) Card data ID, used for Secure Fields, Visa Checkout, AMEX Express Checkout and Android Pay
+        /// </summary>
+        public string SecuredCardData { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. Sets whether customers can edit fields on the Responsive
+        /// Shared Page
+        /// </summary>
+        public bool CustomerReadOnly { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. Set whether the customer’s phone number should be confirmed 
+        /// using Beagle Verify
+        /// </summary>
+        public bool VerifyCustomerPhone { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. Set whether the customer’s email should be confirmed using 
+        /// Beagle Verify
+        /// </summary>
+        public bool VerifyCustomerEmail { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. Short text description to be placed under the logo on the shared page.
+        /// </summary>
+        public string HeaderText { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. The URL of the merchant’s logo to display on the shared page. 
+        /// This must start with https://. 
+        /// </summary>
+        public string LogoUrl { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. Language code determines the language that the shared page 
+        /// will be displayed in. One of: EN (English, default), ES (Spanish)
+        /// </summary>
+        public string Language { get; set; }
+        /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. Set the theme of the Responsive Shared Page from 12 available 
+        /// themes: Bootstrap, BootstrapAmelia, BootstrapCerulean, BootstrapCosmo, BootstrapCyborg, BootstrapFlatly, BootstrapJournal, 
+        /// BootstrapReadable, BootstrapSimplex, BootstrapSlate, BootstrapSpacelab, BootstrapUnited
+        /// </summary>
+        public string CustomView { get; set; }
     }
 }
