@@ -39,8 +39,11 @@ namespace eWAY.Rapid.Internals.Services
 
         public IMappingService MappingService { get; set; }
         
-        public RapidService(string apiKey, string password, string endpoint)
+        public RapidService(string apiKey, string password, string endpoint, SecurityProtocolType? securityProtocol)
         {
+            if(securityProtocol.HasValue)
+                ServicePointManager.SecurityProtocol = securityProtocol.Value;
+
             SetCredentials(apiKey, password);
             SetRapidEndpoint(endpoint);
         }

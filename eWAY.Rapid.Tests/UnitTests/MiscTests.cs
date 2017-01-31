@@ -27,7 +27,7 @@ namespace eWAY.Rapid.Tests.UnitTests
             var request = new Mock<HttpWebRequest>();
             request.Setup(c => c.GetResponse()).Returns(wr.Object);
             var transaction = TestUtil.CreateTransaction();
-            var mockClient = new Mock<RapidService>(APIKEY, PASSWORD, ENDPOINT);
+            var mockClient = new Mock<RapidService>(APIKEY, PASSWORD, ENDPOINT, SecurityProtocolType.Tls12);
             var we = new WebException("MockException", null, WebExceptionStatus.ProtocolError, wr.Object);
             mockClient.Setup(x => x.GetWebResponse(It.IsAny<WebRequest>(), It.IsAny<string>())).Throws(we);
             var client = new RapidClient(mockClient.Object);
@@ -46,7 +46,7 @@ namespace eWAY.Rapid.Tests.UnitTests
             var request = new Mock<HttpWebRequest>();
             request.Setup(c => c.GetResponse()).Returns(wr.Object);
             var transaction = TestUtil.CreateTransaction();
-            var mockClient = new Mock<RapidService>(APIKEY, PASSWORD, ENDPOINT);
+            var mockClient = new Mock<RapidService>(APIKEY, PASSWORD, ENDPOINT, SecurityProtocolType.Tls12);
             var we = new WebException("MockException", null, WebExceptionStatus.ProtocolError, wr.Object);
             mockClient.Setup(x => x.GetWebResponse(It.IsAny<WebRequest>(), It.IsAny<string>())).Throws(we);
             var client = new RapidClient(mockClient.Object);
