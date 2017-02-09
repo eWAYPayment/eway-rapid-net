@@ -155,6 +155,10 @@ namespace eWAY.Rapid.Internals.Services
                     Converters = new JsonConverter[] {new StringEnumConverter()}
                 });
 
+            // Store the default protocol and force TLS 1.2
+            SecurityProtocolType oldProtocol = ServicePointManager.SecurityProtocol;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             var endpointUrl = _rapidEndpoint + method;
             // create a webrequest
             var webRequest = (HttpWebRequest)WebRequest.Create(endpointUrl);
@@ -171,6 +175,8 @@ namespace eWAY.Rapid.Internals.Services
                 var errors = HandleWebException(ex);
                 response.Errors = errors;
             }
+            // Restore old security protocol
+            ServicePointManager.SecurityProtocol = oldProtocol;
             return response;
         }
 
@@ -184,6 +190,10 @@ namespace eWAY.Rapid.Internals.Services
                     NullValueHandling = NullValueHandling.Ignore,
                     Converters = new JsonConverter[] { new StringEnumConverter() }
                 });
+
+            // Store the default protocol and force TLS 1.2
+            SecurityProtocolType oldProtocol = ServicePointManager.SecurityProtocol;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             var endpointUrl = _rapidEndpoint + method;
             // create a webrequest
@@ -203,6 +213,8 @@ namespace eWAY.Rapid.Internals.Services
                 var errors = HandleWebException(ex);
                 response.Errors = errors;
             }
+            // Restore old security protocol
+            ServicePointManager.SecurityProtocol = oldProtocol;
             return response;
         }
 
@@ -210,6 +222,11 @@ namespace eWAY.Rapid.Internals.Services
             where TResponse : BaseResponse, new()
         {
             var endpointUrl = _rapidEndpoint + method;
+
+            // Store the default protocol and force TLS 1.2
+            SecurityProtocolType oldProtocol = ServicePointManager.SecurityProtocol;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             // create a webrequest
             var webRequest = (HttpWebRequest)WebRequest.Create(endpointUrl);
             var response = new TResponse();
@@ -232,7 +249,8 @@ namespace eWAY.Rapid.Internals.Services
                 var errors = HandleWebException(ex);
                 response.Errors = errors;
             }
-
+            // Restore old security protocol
+            ServicePointManager.SecurityProtocol = oldProtocol;
             return response;
         }
 
