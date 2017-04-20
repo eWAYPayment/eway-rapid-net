@@ -32,6 +32,27 @@ namespace eWAY.Rapid.Tests.UnitTests
             Assert.IsNotNull(assertRequest);
             Assert.AreEqual(assertRequest.Method, Method.CreateTokenCustomer);
         }
+        [TestMethod]
+        public void CreateCustomer_Direct_InvokeSecureFields_MethodCreateTokenCustomer()
+        {
+            var mockRapidApiClient = new Mock<IRapidService>();
+            var rapidSdkClient = new RapidClient(mockRapidApiClient.Object);
+            DirectPaymentRequest assertRequest = null;
+            //Arrange
+            var customer = TestUtil.CreateCustomer();
+            customer.SecuredCardData = "44DD7jYYyRgaQnVibOAsYbbFIYmSXbS6hmTxosAhG6CK1biw=";
+            mockRapidApiClient.Setup(x => x.IsValid()).Returns(true);
+            mockRapidApiClient.Setup(x => x.DirectPayment(It.IsAny<DirectPaymentRequest>()))
+                .Callback<DirectPaymentRequest>(i => assertRequest = i)
+                .Returns(new DirectPaymentResponse()).Verifiable();
+            //Act
+            rapidSdkClient.Create(PaymentMethod.Direct, customer);
+            //Assert
+            mockRapidApiClient.Verify();
+            Assert.IsNotNull(assertRequest);
+            Assert.AreEqual(assertRequest.Method, Method.CreateTokenCustomer);
+            Assert.AreEqual(assertRequest.SecuredCardData, customer.SecuredCardData);
+        }
 
         [TestMethod]
         public void CreateCustomer_TransparentRedirect_InvokeCreateAccessCode_MethodCreateTokenCustomer()

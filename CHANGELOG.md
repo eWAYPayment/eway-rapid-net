@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.5.3
+
+ - Added `CancelURL` and `SecuredCardData` to `Customer` so that Tokens can be created with the Responsive Shared Page and Secure Fields
+
 ## 1.5.1
 
  - Updated to force TLS 1.2 to connect to Rapid

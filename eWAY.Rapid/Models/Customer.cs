@@ -74,9 +74,18 @@ namespace eWAY.Rapid.Models
         /// </summary>
         public string RedirectURL { get; set; }
         /// <summary>
+        /// (optional) Used by transactions with a card source of ResponsiveShared. This field specifies the URL on the merchant's 
+        /// site that the responsive page will redirect the cardholder to if they choose to cancel the transaction.
+        /// </summary>
+        public string CancelURL { get; set; }
+        /// <summary>
         /// Used for Direct PaymentMethods The card details for this customer.
         /// </summary>
         public CardDetails CardDetails { get; set; }
+        /// <summary>
+        /// Used for creating a customer with Secure Fields.
+        /// </summary>
+        public String SecuredCardData { get; set; }
         /// <summary>
         /// The customer’s IP address
         /// </summary>

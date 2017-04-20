@@ -51,6 +51,7 @@ namespace eWAY.Rapid.Tests.IntegrationTests
             var client = CreateRapidApiClient();
             //Arrange
             var customer = TestUtil.CreateCustomer();
+            customer.CancelURL = "http://www.eway.com.au";
 
             //Act
             var response = client.Create(PaymentMethod.ResponsiveShared, customer);
