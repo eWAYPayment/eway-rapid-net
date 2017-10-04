@@ -38,13 +38,11 @@
     <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -124,6 +122,10 @@
     <Compile Include="Internals\Services\MappingService.cs" />
     <Compile Include="Internals\Services\RapidService.cs" />
     <Compile Include="IRapidClient.cs" />
+    <Compile Include="Internals\Mappings\CustomMapProfile.cs" />
+    <Compile Include="Internals\Mappings\EntitiesMapProfile.cs" />
+    <Compile Include="Internals\Mappings\RequestMapProfile.cs" />
+    <Compile Include="Internals\Mappings\ResponseMapProfile.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BalanceSummaryPerCardType.cs" />
     <Compile Include="Models\BaseResponse.cs" />
@@ -166,7 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="eWAY.Rapid.GitHub.snk" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ErrorMessages.en.resx" />
