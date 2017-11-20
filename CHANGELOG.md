@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.6.0
+
+ - Updated dependencies: Newtonsoft.Json to v10.0.3 and Automapper to v6.2.0 (thanks @rolandh)
+
 ## 1.5.3
 
  - Added `CancelURL` and `SecuredCardData` to `Customer` so that Tokens can be created with the Responsive Shared Page and Secure Fields
