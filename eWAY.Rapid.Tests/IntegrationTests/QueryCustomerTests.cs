@@ -22,6 +22,7 @@ namespace eWAY.Rapid.Tests.IntegrationTests
             //Assert
             Assert.IsNotNull(queryResponse);
             Assert.AreEqual(createCustomerResponse.Customer.TokenCustomerID, queryResponse.Customers.First().TokenCustomerID);
+            Assert.AreEqual(createCustomerResponse.Customer.CardDetails.Name, customer.CardDetails.Name);
             //TestUtil.AssertReturnedCustomerData_VerifyAddressAreEqual(createCustomerResponse.Customer,
                 //queryResponse.Customers.First());
             TestUtil.AssertReturnedCustomerData_VerifyAllFieldsAreEqual(createCustomerResponse.Customer,

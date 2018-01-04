@@ -140,6 +140,9 @@ namespace eWAY.Rapid.Internals.Mappings {
             CreateMap<DirectSettlementSearchResponse, SettlementSearchResponse>(MemberList.Destination)
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
                 .ReverseMap();
+
+            CreateMap<DirectTokenCustomer, Customer>(MemberList.Destination)
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src));
         }
     }
 }
