@@ -2,6 +2,11 @@
 
 All Notable changes will be documented in this file
 
+## 1.6.1
+
+ - Fix missing card details for token customer reponses
+ - Updated Automapper dependency to v6.2.2
+
 ## 1.6.0
 
  - Updated dependencies: Newtonsoft.Json to v10.0.3 and Automapper to v6.2.0 (thanks @rolandh)
