@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <TargetFrameworks>netstandard2.0</TargetFrameworks>
+      <SignAssembly>true</SignAssembly>
+      <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="6.2.2" />
