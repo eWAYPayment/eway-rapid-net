@@ -1,6 +1,12 @@
 
 before_build:
-  - nuget restore
+  - appveyor-retry dotnet restore
+
+build_script:
+  - dotnet build
+
+test_script:
+  - dotnet test ".\eWAY.Rapid.Tests\"
 
 environment:
   matrix:
