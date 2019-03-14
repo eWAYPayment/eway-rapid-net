@@ -33,12 +33,12 @@ namespace eWAY.Rapid.Internals.Mappings {
                 .IncludeBase<Transaction, CreateAccessCodeRequest>();
 
             CreateMap<Customer, DirectPaymentRequest>(MemberList.None)
-                .ForMember(dest => dest.Method, opt => opt.UseValue(Method.CreateTokenCustomer))
-                .ForMember(dest => dest.TransactionType, opt => opt.UseValue(TransactionTypes.Purchase))
+                .ForMember(dest => dest.Method, opt => opt.MapFrom(x => Method.CreateTokenCustomer))
+                .ForMember(dest => dest.TransactionType, opt => opt.MapFrom(x => TransactionTypes.Purchase))
                 .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
 
             CreateMap<Customer, CreateAccessCodeRequest>(MemberList.None)
-                .ForMember(dest => dest.Method, opt => opt.UseValue(Method.CreateTokenCustomer))
+                .ForMember(dest => dest.Method, opt => opt.MapFrom(x => Method.CreateTokenCustomer))
                 .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
 
             CreateMap<Customer, CreateAccessCodeSharedRequest>(MemberList.None)
