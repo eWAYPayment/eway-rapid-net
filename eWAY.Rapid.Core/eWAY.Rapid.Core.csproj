@@ -1,0 +1,145 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<RootNamespace>eWAY.Rapid</RootNamespace>
+	<AssemblyName>eWAY.Rapid</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\eWAY.Rapid\Enums\BeagleVerifyStatus.cs" Link="Enums\BeagleVerifyStatus.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\CardType.cs" Link="Enums\CardType.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\FilterMatchType.cs" Link="Enums\FilterMatchType.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\FraudAction.cs" Link="Enums\FraudAction.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\NamespaceDoc.cs" Link="Enums\NamespaceDoc.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\PaymentMethod.cs" Link="Enums\PaymentMethod.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\RequestMethod.cs" Link="Enums\RequestMethod.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\SettlementSearchMode.cs" Link="Enums\SettlementSearchMode.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\ShippingMethod.cs" Link="Enums\ShippingMethod.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\TransactionTypes.cs" Link="Enums\TransactionTypes.cs" />
+    <Compile Include="..\eWAY.Rapid\Enums\VerifyStatus.cs" Link="Enums\VerifyStatus.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\AllowedCards.cs" Link="Internals\Enums\AllowedCards.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\CustomView.cs" Link="Internals\Enums\CustomView.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\FilterMatchType.cs" Link="Internals\Enums\FilterMatchType.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\HttpMethods.cs" Link="Internals\Enums\HttpMethods.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\Method.cs" Link="Internals\Enums\Method.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\PaymentType.cs" Link="Internals\Enums\PaymentType.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Enums\TransactionTypes.cs" Link="Internals\Enums\TransactionTypes.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Mappings\CustomMapProfile.cs" Link="Internals\Mappings\CustomMapProfile.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Mappings\EntitiesMapProfile.cs" Link="Internals\Mappings\EntitiesMapProfile.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Mappings\RequestMapProfile.cs" Link="Internals\Mappings\RequestMapProfile.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Mappings\ResponseMapProfile.cs" Link="Internals\Mappings\ResponseMapProfile.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\BalanceSummaryPerCardType.cs" Link="Internals\Models\BalanceSummaryPerCardType.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\BeagleVerifyResult.cs" Link="Internals\Models\BeagleVerifyResult.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\CardDetails.cs" Link="Internals\Models\CardDetails.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\Customer.cs" Link="Internals\Models\Customer.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\DirectTokenCustomer.cs" Link="Internals\Models\DirectTokenCustomer.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\LineItem.cs" Link="Internals\Models\LineItem.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\Options.cs" Link="Internals\Models\Options.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\Payment.cs" Link="Internals\Models\Payment.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\Refund.cs" Link="Internals\Models\Refund.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\SettlementSummary.cs" Link="Internals\Models\SettlementSummary.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\SettlementTransaction.cs" Link="Internals\Models\SettlementTransaction.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\ShippingAddress.cs" Link="Internals\Models\ShippingAddress.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\TokenCustomer.cs" Link="Internals\Models\TokenCustomer.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\TransactionFilter.cs" Link="Internals\Models\TransactionFilter.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\TransactionResult.cs" Link="Internals\Models\TransactionResult.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Models\VerificationResult.cs" Link="Internals\Models\VerificationResult.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\RapidClient.cs" Link="Internals\RapidClient.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\BaseRequest.cs" Link="Internals\Request\BaseRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\CaptureAuthBaseRequest.cs" Link="Internals\Request\CaptureAuthBaseRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\CreateAccessCodeRequest.cs" Link="Internals\Request\CreateAccessCodeRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\CreateAccessCodeSharedRequest.cs" Link="Internals\Request\CreateAccessCodeSharedRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectAuthorisationRequest.cs" Link="Internals\Request\DirectAuthorisationRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectCancelAuthorisationRequest.cs" Link="Internals\Request\DirectCancelAuthorisationRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectCapturePaymentRequest.cs" Link="Internals\Request\DirectCapturePaymentRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectCustomerRequest.cs" Link="Internals\Request\DirectCustomerRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectCustomerSearchRequest.cs" Link="Internals\Request\DirectCustomerSearchRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectPaymentRequest.cs" Link="Internals\Request\DirectPaymentRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\DirectRefundRequest.cs" Link="Internals\Request\DirectRefundRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\GetAccessCodeResultRequest.cs" Link="Internals\Request\GetAccessCodeResultRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Request\TransactionSearchRequest.cs" Link="Internals\Request\TransactionSearchRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\BaseResponse.cs" Link="Internals\Response\BaseResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\CaptureAuthBaseResponse.cs" Link="Internals\Response\CaptureAuthBaseResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\CreateAccessCodeResponse.cs" Link="Internals\Response\CreateAccessCodeResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\CreateAccessCodeSharedResponse.cs" Link="Internals\Response\CreateAccessCodeSharedResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectAuthorisationResponse.cs" Link="Internals\Response\DirectAuthorisationResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectCancelAuthorisationResponse.cs" Link="Internals\Response\DirectCancelAuthorisationResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectCapturePaymentResponse.cs" Link="Internals\Response\DirectCapturePaymentResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectCustomerResponse.cs" Link="Internals\Response\DirectCustomerResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectCustomerSearchResponse.cs" Link="Internals\Response\DirectCustomerSearchResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectPaymentResponse.cs" Link="Internals\Response\DirectPaymentResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectRefundResponse.cs" Link="Internals\Response\DirectRefundResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\DirectSettlementReportResponse.cs" Link="Internals\Response\DirectSettlementReportResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\GetAccessCodeResultResponse.cs" Link="Internals\Response\GetAccessCodeResultResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Response\TransactionSearchResponse.cs" Link="Internals\Response\TransactionSearchResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Services\IMappingService.cs" Link="Internals\Services\IMappingService.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Services\IRapidService.cs" Link="Internals\Services\IRapidService.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Services\MappingService.cs" Link="Internals\Services\MappingService.cs" />
+    <Compile Include="..\eWAY.Rapid\Internals\Services\RapidService.cs" Link="Internals\Services\RapidService.cs" />
+    <Compile Include="..\eWAY.Rapid\IRapidClient.cs" Link="IRapidClient.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Address.cs" Link="Models\Address.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\BalanceSummaryPerCardType.cs" Link="Models\BalanceSummaryPerCardType.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\BaseResponse.cs" Link="Models\BaseResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CancelAuthorisationRequest.cs" Link="Models\CancelAuthorisationRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CancelAuthorisationResponse.cs" Link="Models\CancelAuthorisationResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CapturePaymentRequest.cs" Link="Models\CapturePaymentRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CapturePaymentResponse.cs" Link="Models\CapturePaymentResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CardDetails.cs" Link="Models\CardDetails.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CodeDetail.cs" Link="Models\CodeDetail.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CreateCustomerResponse.cs" Link="Models\CreateCustomerResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\CreateTransactionResponse.cs" Link="Models\CreateTransactionResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Customer.cs" Link="Models\Customer.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\LineItem.cs" Link="Models\LineItem.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\NamespaceDoc.cs" Link="Models\NamespaceDoc.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\NVPair.cs" Link="Models\NVPair.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Option.cs" Link="Models\Option.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Payment.cs" Link="Models\Payment.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\PaymentDetails.cs" Link="Models\PaymentDetails.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\ProcessingDetails.cs" Link="Models\ProcessingDetails.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\QueryCustomerResponse.cs" Link="Models\QueryCustomerResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\QueryTransactionResponse.cs" Link="Models\QueryTransactionResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Refund.cs" Link="Models\Refund.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\RefundDetails.cs" Link="Models\RefundDetails.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\RefundResultResponse.cs" Link="Models\RefundResultResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\SettlementReportResponse.cs" Link="Models\SettlementReportResponse.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\SettlementSearchRequest.cs" Link="Models\SettlementSearchRequest.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\SettlementSummary.cs" Link="Models\SettlementSummary.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\SettlementTransaction.cs" Link="Models\SettlementTransaction.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\ShippingAddress.cs" Link="Models\ShippingAddress.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\ShippingDetails.cs" Link="Models\ShippingDetails.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Transaction.cs" Link="Models\Transaction.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\TransactionFilter.cs" Link="Models\TransactionFilter.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\TransactionStatus.cs" Link="Models\TransactionStatus.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\Verification.cs" Link="Models\Verification.cs" />
+    <Compile Include="..\eWAY.Rapid\Models\VerificationResult.cs" Link="Models\VerificationResult.cs" />
+    <Compile Include="..\eWAY.Rapid\RapidClientFactory.cs" Link="RapidClientFactory.cs" />
+    <Compile Include="..\eWAY.Rapid\RapidSystemErrorCode.cs" Link="RapidSystemErrorCode.cs" />
+    <Compile Include="..\eWAY.Rapid\SystemConstants.cs" Link="SystemConstants.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\eWAY.Rapid\Resources\ErrorMessages.en.resx" Link="Resources\ErrorMessages.en.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="Internals\Enums\" />
+    <Folder Include="Internals\Mappings\" />
+    <Folder Include="Internals\Models\" />
+    <Folder Include="Internals\Services\" />
+    <Folder Include="Internals\Response\" />
+    <Folder Include="Internals\Request\" />
+    <Folder Include="Models\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+</Project>

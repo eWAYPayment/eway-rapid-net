@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <SignAssembly>true</SignAssembly>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyOriginatorKeyFile>..\eWAY.Rapid.GitHub.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\CreateCustomerTests.cs" Link="IntegrationTests\CreateCustomerTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\CreateTransactionTests.cs" Link="IntegrationTests\CreateTransactionTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\DirectRefundTests.cs" Link="IntegrationTests\DirectRefundTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\MultiThreadedTests.cs" Link="IntegrationTests\MultiThreadedTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\PreAuthTests.cs" Link="IntegrationTests\PreAuthTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\QueryCustomerTests.cs" Link="IntegrationTests\QueryCustomerTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\QueryTransactionTests.cs" Link="IntegrationTests\QueryTransactionTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\SdkTestBase.cs" Link="IntegrationTests\SdkTestBase.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\SettlementSearchTests.cs" Link="IntegrationTests\SettlementSearchTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\IntegrationTests\UpdateCustomerTests.cs" Link="IntegrationTests\UpdateCustomerTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\MappingTests\MappingTests.cs" Link="MappingTests\MappingTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\Properties\AssemblyInfo.cs" Link="AssemblyInfo.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\TestUtil.cs" Link="TestUtil.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\UnitTests\CreateCustomerTests.cs" Link="UnitTests\CreateCustomerTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\UnitTests\CreateTransactionTests.cs" Link="UnitTests\CreateTransactionTests.cs" />
+    <Compile Include="..\eWAY.Rapid.Tests\UnitTests\MiscTests.cs" Link="UnitTests\MiscTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0-preview3.19128.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eWAY.Rapid.Core\eWAY.Rapid.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IntegrationTests\" />
+    <Folder Include="MappingTests\" />
+    <Folder Include="UnitTests\" />
+  </ItemGroup>
+
+</Project>
