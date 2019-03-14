@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eWAY.Rapid", "eWAY.Rapid\eWAY.Rapid.csproj", "{989EDDF7-D8E7-4CF0-B343-360845153BC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eWAY.Rapid", "eWAY.Rapid\eWAY.Rapid.csproj", "{F51B5BE6-79A8-44EB-83DD-3109E527F81E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eWAY.Rapid.Tests", "eWAY.Rapid.Tests\eWAY.Rapid.Tests.csproj", "{F3291AF5-2FFA-4D5B-BEF3-9FF0CAFFDF8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eWAY.Rapid.Tests", "eWAY.Rapid.Tests\eWAY.Rapid.Tests.csproj", "{B08D82FE-FB42-451D-AC73-454D2D85D369}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eWAY.Rapid.Core", "eWAY.Rapid.Core\eWAY.Rapid.Core.csproj", "{D0671382-F47B-483F-B69E-EDA7A1B161DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eWAY.Rapid.Core.Tests", "eWAY.Rapid.Core.Tests\eWAY.Rapid.Core.Tests.csproj", "{D654628E-DF53-464D-B0B7-EE9EC724E8C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{989EDDF7-D8E7-4CF0-B343-360845153BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{989EDDF7-D8E7-4CF0-B343-360845153BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{989EDDF7-D8E7-4CF0-B343-360845153BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{989EDDF7-D8E7-4CF0-B343-360845153BC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3291AF5-2FFA-4D5B-BEF3-9FF0CAFFDF8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3291AF5-2FFA-4D5B-BEF3-9FF0CAFFDF8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3291AF5-2FFA-4D5B-BEF3-9FF0CAFFDF8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3291AF5-2FFA-4D5B-BEF3-9FF0CAFFDF8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51B5BE6-79A8-44EB-83DD-3109E527F81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51B5BE6-79A8-44EB-83DD-3109E527F81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51B5BE6-79A8-44EB-83DD-3109E527F81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51B5BE6-79A8-44EB-83DD-3109E527F81E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B08D82FE-FB42-451D-AC73-454D2D85D369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B08D82FE-FB42-451D-AC73-454D2D85D369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B08D82FE-FB42-451D-AC73-454D2D85D369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B08D82FE-FB42-451D-AC73-454D2D85D369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0671382-F47B-483F-B69E-EDA7A1B161DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0671382-F47B-483F-B69E-EDA7A1B161DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0671382-F47B-483F-B69E-EDA7A1B161DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0671382-F47B-483F-B69E-EDA7A1B161DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D654628E-DF53-464D-B0B7-EE9EC724E8C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D654628E-DF53-464D-B0B7-EE9EC724E8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D654628E-DF53-464D-B0B7-EE9EC724E8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D654628E-DF53-464D-B0B7-EE9EC724E8C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F8B4EBB1-0591-41D5-8F0C-14F466BC4C98}
+		SolutionGuid = {2446A979-C1A3-4DBA-BE1E-C256D5502904}
 	EndGlobalSection
 EndGlobal
