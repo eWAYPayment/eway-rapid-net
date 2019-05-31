@@ -23,5 +23,7 @@
         /// The AccessCode for this transaction (can be used with the customer query method call for searching before and after the card capture is completed)
         /// </summary>
         public string AccessCode { get; set; }
+        
+        public TransactionTypes TransactionTypes => TransactionTypes.MOTO; 
     }
 }
