@@ -1,4 +1,7 @@
-﻿namespace eWAY.Rapid.Models
+using eWAY.Rapid.Enums;
+
+
+namespace eWAY.Rapid.Models
 {
     /// <summary>
     /// The response is returned from a CreateTransaction method call. It will echo back the details of the Customer that has been, or will be, created.
