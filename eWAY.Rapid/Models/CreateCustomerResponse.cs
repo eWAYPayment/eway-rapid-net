@@ -27,6 +27,5 @@ namespace eWAY.Rapid.Models
         /// </summary>
         public string AccessCode { get; set; }
         
-        public TransactionTypes TransactionTypes => TransactionTypes.MOTO; 
     }
 }
