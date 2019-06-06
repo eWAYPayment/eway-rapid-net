@@ -1,5 +1,4 @@
 
-
 namespace eWAY.Rapid.Models
 {
     /// <summary>
@@ -24,7 +23,6 @@ namespace eWAY.Rapid.Models
         /// <summary>
         /// The AccessCode for this transaction (can be used with the customer query method call for searching before and after the card capture is completed)
         /// </summary>
-        public string AccessCode { get; set; }
-        
+        public string AccessCode { get; set; }   
     }
 }
