@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.6.2
+
+ - Change default TransactionType to MOTO when creating a Token Customer with the Responsive Shared Page.
+
 ## 1.6.1
 
  - Fix missing card details for token customer reponses
