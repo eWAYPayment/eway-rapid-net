@@ -1,4 +1,3 @@
-using eWAY.Rapid.Enums;
 
 
 namespace eWAY.Rapid.Models
