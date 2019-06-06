@@ -34,7 +34,7 @@ namespace eWAY.Rapid.Internals.Mappings {
 
             CreateMap<Customer, DirectPaymentRequest>(MemberList.None)
                 .ForMember(dest => dest.Method, opt => opt.UseValue(Method.CreateTokenCustomer))
-                .ForMember(dest => dest.TransactionType, opt => opt.UseValue(TransactionTypes.Purchase))
+                .ForMember(dest => dest.TransactionType, opt => opt.UseValue(TransactionTypes.MOTO))
                 .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
 
             CreateMap<Customer, CreateAccessCodeRequest>(MemberList.None)
