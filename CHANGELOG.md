@@ -4,7 +4,7 @@ All Notable changes will be documented in this file
 
 ## 1.6.2
 
- - Change default TransactionType to MOTO when creating a Token Customer with the Responsive Shared Page.
+ - Change default TransactionType to MOTO when creating a Token Customer.
 
 ## 1.6.1
 
