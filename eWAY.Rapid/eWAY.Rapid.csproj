@@ -11,6 +11,9 @@
     <PackageReference Include="Mapster" Version="4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ErrorMessages.en.resx" />
+  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
     <Reference Include="System.Web"/>
     <Reference Include="System.Web.Services"/>
