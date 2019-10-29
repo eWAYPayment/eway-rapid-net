@@ -19,7 +19,7 @@ using VerificationResult = eWAY.Rapid.Models.VerificationResult;
 
 namespace eWAY.Rapid.Internals.Services
 {
-    public class MappingService: IMappingService
+    internal class MappingService: IMappingService
     {
         private static IAdapter config { get; set; }
         public static void InitializeMappingService()
