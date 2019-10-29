@@ -1,14 +1,16 @@
 ﻿using System;
-using AutoMapper;
+using Mapster;
 using eWAY.Rapid.Models;
 using Option = eWAY.Rapid.Internals.Models.Option;
 
 namespace eWAY.Rapid.Internals.Mappings {
-    internal class CustomMapProfile : Profile {
-        public CustomMapProfile() {
-            CreateMap<String, Option>(MemberList.None).ConvertUsing(s => new Option { Value = s });
-            CreateMap<Option, String>(MemberList.None).ConvertUsing(o => o.Value);
-            CreateMap<bool?, TransactionStatus>(MemberList.None).AfterMap((b, t) => t.Status = b);
+    internal class CustomMapProfile {
+        public static void CreateCustomMapProfile(IAdapter adapter)
+        {
+            adapter.BuildAdapter(TypeAdapterConfig<String, Option>.NewConfig()
+                .Map(dest => dest.Value, src => src).TwoWays());
+            adapter.BuildAdapter(TypeAdapterConfig<bool?, TransactionStatus>.NewConfig()
+                .AfterMapping((b, t) => t.Status = b));
         }
     }
 }

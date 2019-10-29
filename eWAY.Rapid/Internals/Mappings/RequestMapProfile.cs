@@ -1,63 +1,68 @@
-﻿using AutoMapper;
-using eWAY.Rapid.Internals.Enums;
+﻿using eWAY.Rapid.Internals.Enums;
 using eWAY.Rapid.Internals.Request;
 using eWAY.Rapid.Models;
+using Mapster;
 using Customer = eWAY.Rapid.Models.Customer;
 using Refund = eWAY.Rapid.Models.Refund;
 
 namespace eWAY.Rapid.Internals.Mappings {
-    internal class RequestMapProfile : Profile {
-        public RequestMapProfile() {
-            AllowNullCollections = true;
-            AllowNullDestinationValues = true;
+    internal class RequestMapProfile {
+        public static void CreateRequestMapProfile(IAdapter adapter) {
 
-            CreateMap<Transaction, DirectPaymentRequest>(MemberList.None)
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.LineItems))
-                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
-                .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.PaymentDetails))
-                .ForMember(dest => dest.Method, opt => opt.MapFrom(src => src.Capture ? Method.ProcessPayment : Method.Authorise));
+            adapter.BuildAdapter(TypeAdapterConfig<Transaction, DirectPaymentRequest>
+                .NewConfig()
+                .Map(dest => dest.Items, src => src.LineItems)
+                .Map(dest => dest.ShippingAddress, src => src.ShippingDetails)
+                .Map(dest => dest.Payment, src => src.PaymentDetails)
+                .Map(dest => dest.Method, src => src.Capture ? Method.ProcessPayment : Method.Authorise));
 
-            CreateMap<Transaction, CreateAccessCodeRequest>(MemberList.None)
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.LineItems))
-                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
-                .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.PaymentDetails))
-                .ForMember(dest => dest.Method, opt => opt.MapFrom(src => src.Capture
+
+            adapter.BuildAdapter(TypeAdapterConfig<Transaction, DirectPaymentRequest>.NewConfig()
+                .Map(dest => dest.Items, src => src.LineItems)
+                .Map(dest => dest.ShippingAddress, src => src.ShippingDetails)
+                .Map(dest => dest.Payment, src => src.PaymentDetails)
+                .Map(dest => dest.Method, src => src.Capture ? Method.ProcessPayment : Method.Authorise));
+
+            adapter.BuildAdapter(TypeAdapterConfig<Transaction, CreateAccessCodeRequest>.NewConfig()
+                .Map(dest => dest.Items, src => src.LineItems)
+                .Map(dest => dest.ShippingAddress, src => src.ShippingDetails)
+                .Map(dest => dest.Payment, src => src.PaymentDetails)
+                .Map(dest => dest.Method, src => src.Capture
                     ? (src.Customer.TokenCustomerID == null && src.SaveCustomer != true ? Method.ProcessPayment : Method.TokenPayment)
                     : Method.Authorise));
 
-            CreateMap<Transaction, CapturePaymentRequest>(MemberList.None)
-                .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.PaymentDetails))
-                .ForMember(dest => dest.TransactionId, opt => opt.MapFrom(src => src.AuthTransactionID)).ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Transaction, CapturePaymentRequest>.NewConfig().TwoWays()
+                .Map(dest => dest.Payment, src => src.PaymentDetails)
+                .Map(dest => dest.TransactionId, src => src.AuthTransactionID));
 
-            CreateMap<Transaction, CreateAccessCodeSharedRequest>()
-                .IncludeBase<Transaction, CreateAccessCodeRequest>();
+            adapter.BuildAdapter(TypeAdapterConfig<Transaction, CreateAccessCodeSharedRequest>.NewConfig()
+                .Inherits<Transaction, CreateAccessCodeRequest>());
 
-            CreateMap<Customer, DirectPaymentRequest>(MemberList.None)
-                .ForMember(dest => dest.Method, opt => opt.UseValue(Method.CreateTokenCustomer))
-                .ForMember(dest => dest.TransactionType, opt => opt.UseValue(TransactionTypes.MOTO))
-                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<Customer, DirectPaymentRequest>.NewConfig()
+                .Map(dest => dest.Method, a => Method.CreateTokenCustomer)
+                .Map(dest => dest.TransactionType, a => TransactionTypes.Purchase)
+                .Map(dest => dest.Customer, src => src));
 
-            CreateMap<Customer, CreateAccessCodeRequest>(MemberList.None)
-                .ForMember(dest => dest.Method, opt => opt.UseValue(Method.CreateTokenCustomer))
-                .ForMember(dest => dest.TransactionType, opt => opt.UseValue(TransactionTypes.MOTO))
-                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<Customer, CreateAccessCodeRequest>.NewConfig()
+                .Map(dest => dest.Method, a => Method.CreateTokenCustomer)
+                .Map(dest => dest.Customer, src => src));
 
-            CreateMap<Customer, CreateAccessCodeSharedRequest>(MemberList.None)
-                .IncludeBase<Customer, CreateAccessCodeRequest>();
+            adapter.BuildAdapter(TypeAdapterConfig<Customer, CreateAccessCodeSharedRequest>.NewConfig()
+                .Inherits<Customer, CreateAccessCodeRequest>());
 
-            CreateMap<Refund, DirectRefundRequest>(MemberList.None)
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.LineItems))
-                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingDetails))
-                .ForMember(dest => dest.Refund, opt => opt.MapFrom(src => src.RefundDetails));
+            adapter.BuildAdapter(TypeAdapterConfig<Refund, DirectRefundRequest>.NewConfig()
+                .Map(dest => dest.Items, src => src.LineItems)
+                .Map(dest => dest.ShippingAddress, src => src.ShippingDetails)
+                .Map(dest => dest.Refund, src => src.RefundDetails));
 
-            CreateMap<CapturePaymentRequest, DirectCapturePaymentRequest>(MemberList.None)
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<CapturePaymentRequest, DirectCapturePaymentRequest>
+                .NewConfig().TwoWays());
 
-            CreateMap<CancelAuthorisationRequest, DirectCancelAuthorisationRequest>(MemberList.None)
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<CancelAuthorisationRequest, DirectCancelAuthorisationRequest>
+                .NewConfig().TwoWays());
 
-            CreateMap<Transaction, DirectAuthorisationRequest>(MemberList.None)
-                .IncludeBase<Transaction, DirectPaymentRequest>();
+            adapter.BuildAdapter(TypeAdapterConfig<Transaction, DirectAuthorisationRequest>.NewConfig()
+                .Inherits<Transaction, DirectPaymentRequest>());
         }
     }
 }

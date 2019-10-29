@@ -1,144 +1,144 @@
-﻿using AutoMapper;
-using eWAY.Rapid.Internals.Models;
+﻿using eWAY.Rapid.Internals.Models;
 using eWAY.Rapid.Internals.Response;
 using eWAY.Rapid.Models;
 using Customer = eWAY.Rapid.Models.Customer;
 using Option = eWAY.Rapid.Internals.Models.Option;
+using Mapster;
 
 namespace eWAY.Rapid.Internals.Mappings {
-    internal class EntitiesMapProfile : Profile {
-        public EntitiesMapProfile() {
-            AllowNullCollections = true;
-            AllowNullDestinationValues = true;
+    internal class EntitiesMapProfile {
+        public static void CreateEntitiesMapProfile(IAdapter adapter) {
 
-            CreateMap<ShippingDetails, Models.ShippingAddress>()
-               .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.ShippingAddress.City))
-               .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.ShippingAddress.Country))
-               .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.ShippingAddress.State))
-               .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.ShippingAddress.PostalCode))
-               .ForMember(dest => dest.Street1, opt => opt.MapFrom(src => src.ShippingAddress.Street1))
-               .ForMember(dest => dest.Street2, opt => opt.MapFrom(src => src.ShippingAddress.Street2))
-               .ForMember(dest => dest.ShippingMethod, opt => opt.MapFrom(src => src.ShippingMethod.ToString()))
-               .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<ShippingDetails, Models.ShippingAddress>.NewConfig()
+                .Map(dest => dest.City, src => src.ShippingAddress.City)
+               .Map(dest => dest.Country, src => src.ShippingAddress.Country)
+               .Map(dest => dest.State, src => src.ShippingAddress.State)
+               .Map(dest => dest.PostalCode, src => src.ShippingAddress.PostalCode)
+               .Map(dest => dest.Street1, src => src.ShippingAddress.Street1)
+               .Map(dest => dest.Street2, src => src.ShippingAddress.Street2)
+               .Map(dest => dest.ShippingMethod, src => src.ShippingMethod.ToString()).TwoWays());
 
-            CreateMap<Address, Models.ShippingAddress>()
-                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
-                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
-                .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
-                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
-                .ForMember(dest => dest.Street1, opt => opt.MapFrom(src => src.Street1))
-                .ForMember(dest => dest.Street2, opt => opt.MapFrom(src => src.Street2))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Address, Models.ShippingAddress>.NewConfig()
+                 
+                .Map(dest => dest.City, src => src.City)
+                .Map(dest => dest.Country, src => src.Country)
+                .Map(dest => dest.State, src => src.State)
+                .Map(dest => dest.PostalCode, src => src.PostalCode)
+                .Map(dest => dest.Street1, src => src.Street1)
+                .Map(dest => dest.Street2, src => src.Street2).TwoWays());
 
-            CreateMap<RefundDetails, Models.Refund>()
-                .ForMember(dest => dest.TransactionID, opt => opt.MapFrom(src => src.OriginalTransactionID.ToString()));
+            adapter.BuildAdapter(TypeAdapterConfig<RefundDetails, Models.Refund>.NewConfig()
+                .Map(dest => dest.TransactionID, src => src.OriginalTransactionID.ToString()));
 
-            CreateMap<Models.Refund, RefundDetails>()
-                .ForMember(dest => dest.OriginalTransactionID, opt => opt.MapFrom(src => int.Parse(src.TransactionID)));
+            adapter.BuildAdapter(TypeAdapterConfig<Models.Refund, RefundDetails>.NewConfig()
+                .Map(dest => dest.OriginalTransactionID, src => int.Parse(src.TransactionID)));
 
             long? nullableTokenId = null;
 
-            CreateMap<Customer, Models.Customer>()
-                .ForMember(dest => dest.TokenCustomerID, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.TokenCustomerID) ? nullableTokenId : long.Parse(src.TokenCustomerID)))
-                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
-                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country))
-                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode))
-                .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.Address.State))
-                .ForMember(dest => dest.Street1, opt => opt.MapFrom(src => src.Address.Street1))
-                .ForMember(dest => dest.Street2, opt => opt.MapFrom(src => src.Address.Street2)).ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Customer, Models.Customer>.NewConfig()
+                
+                .Map(dest => dest.TokenCustomerID, src => string.IsNullOrWhiteSpace(src.TokenCustomerID) ? nullableTokenId : long.Parse(src.TokenCustomerID))
+                .Map(dest => dest.City, src => src.Address.City)
+                .Map(dest => dest.Country, src => src.Address.Country)
+                .Map(dest => dest.PostalCode, src => src.Address.PostalCode)
+                .Map(dest => dest.State, src => src.Address.State)
+                .Map(dest => dest.Street1, src => src.Address.Street1)
+                .Map(dest => dest.Street2, src => src.Address.Street2).TwoWays());
 
-            CreateMap<Models.Customer, Customer>()
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<Models.Customer, Customer>.NewConfig()
+                .Map(dest => dest.Address, src => src));
 
-            CreateMap<Models.ShippingAddress, ShippingDetails>()
-                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<Models.ShippingAddress, ShippingDetails>.NewConfig()
+                .Map(dest => dest.ShippingAddress, src => src));
 
-            CreateMap<Models.Customer, Address>()
-                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
-                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
-                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
-                .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
-                .ForMember(dest => dest.Street1, opt => opt.MapFrom(src => src.Street1))
-                .ForMember(dest => dest.Street2, opt => opt.MapFrom(src => src.Street2));
+            adapter.BuildAdapter(TypeAdapterConfig<Models.Customer, Address>.NewConfig()
+                .Map(dest => dest.City, src => src.City)
+                .Map(dest => dest.Country, src => src.Country)
+                .Map(dest => dest.PostalCode, src => src.PostalCode)
+                .Map(dest => dest.State, src => src.State)
+                .Map(dest => dest.Street1, src => src.Street1)
+                .Map(dest => dest.Street2, src => src.Street2));
 
-            CreateMap<CreateAccessCodeResponse, Transaction>()
-                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer))
-                .ForMember(dest => dest.PaymentDetails, opt => opt.MapFrom(src => src.Payment));
+            adapter.BuildAdapter(TypeAdapterConfig<CreateAccessCodeResponse, Transaction>.NewConfig()
+                .Map(dest => dest.Customer, src => src.Customer)
+                .Map(dest => dest.PaymentDetails, src => src.Payment));
 
-            CreateMap<DirectTokenCustomer, Customer>()
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectTokenCustomer, Customer>.NewConfig()
+                
+                .Map(dest => dest.Address, src => src).TwoWays());
 
-            CreateMap<DirectTokenCustomer, Address>()
-                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
-                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
-                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
-                .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
-                .ForMember(dest => dest.Street1, opt => opt.MapFrom(src => src.Street1))
-                .ForMember(dest => dest.Street2, opt => opt.MapFrom(src => src.Street2)).ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectTokenCustomer, Address>.NewConfig()
+                .TwoWays()
+                .Map(dest => dest.City, src => src.City)
+                .Map(dest => dest.Country, src => src.Country)
+                .Map(dest => dest.PostalCode, src => src.PostalCode)
+                .Map(dest => dest.State, src => src.State)
+                .Map(dest => dest.Street1, src => src.Street1)
+                .Map(dest => dest.Street2, src => src.Street2));
 
-            CreateMap<TokenCustomer, Customer>()
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<TokenCustomer, Customer>.NewConfig()
+                
+                .Map(dest => dest.Address, src => src).TwoWays());
 
-            CreateMap<TokenCustomer, Address>()
-                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
-                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
-                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
-                .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
-                .ForMember(dest => dest.Street1, opt => opt.MapFrom(src => src.Street1))
-                .ForMember(dest => dest.Street2, opt => opt.MapFrom(src => src.Street2)).ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<TokenCustomer, Address>.NewConfig()
+                
+                .Map(dest => dest.City, src => src.City)
+                .Map(dest => dest.Country, src => src.Country)
+                .Map(dest => dest.PostalCode, src => src.PostalCode)
+                .Map(dest => dest.State, src => src.State)
+                .Map(dest => dest.Street1, src => src.Street1)
+                .Map(dest => dest.Street2, src => src.Street2).TwoWays());
 
-            CreateMap<Customer, TokenCustomer>()
-                .ForMember(dest => dest.CardExpiryMonth, opt => opt.MapFrom(src => src.CardDetails.ExpiryMonth))
-                .ForMember(dest => dest.CardExpiryYear, opt => opt.MapFrom(src => src.CardDetails.ExpiryYear))
-                .ForMember(dest => dest.CardIssueNumber, opt => opt.MapFrom(src => src.CardDetails.IssueNumber))
-                .ForMember(dest => dest.CardName, opt => opt.MapFrom(src => src.CardDetails.Name))
-                .ForMember(dest => dest.CardNumber, opt => opt.MapFrom(src => src.CardDetails.Number))
-                .ForMember(dest => dest.CardStartMonth, opt => opt.MapFrom(src => src.CardDetails.StartMonth))
-                .ForMember(dest => dest.CardStartYear, opt => opt.MapFrom(src => src.CardDetails.StartYear))
-                .IncludeBase<Customer, Models.Customer>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Customer, TokenCustomer>.NewConfig()
+                
+                .Map(dest => dest.CardExpiryMonth, src => src.CardDetails.ExpiryMonth)
+                .Map(dest => dest.CardExpiryYear, src => src.CardDetails.ExpiryYear)
+                .Map(dest => dest.CardIssueNumber, src => src.CardDetails.IssueNumber)
+                .Map(dest => dest.CardName, src => src.CardDetails.Name)
+                .Map(dest => dest.CardNumber, src => src.CardDetails.Number)
+                .Map(dest => dest.CardStartMonth, src => src.CardDetails.StartMonth)
+                .Map(dest => dest.CardStartYear, src => src.CardDetails.StartYear)
+                .Inherits<Customer, Models.Customer>().TwoWays());
 
-            CreateMap<Customer, DirectTokenCustomer>()
-                .IncludeBase<Customer, TokenCustomer>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Customer, DirectTokenCustomer>.NewConfig()
+                
+                .Inherits<Customer, TokenCustomer>().TwoWays());
 
-            CreateMap<Rapid.Models.ShippingAddress, Models.ShippingAddress>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.ShippingAddress, Models.ShippingAddress>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.LineItem, Models.LineItem>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.LineItem, Models.LineItem>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.Option, Models.Option>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.Option, Models.Option>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.PaymentDetails, Models.Payment>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.PaymentDetails, Models.Payment>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.CardDetails, Models.CardDetails>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.CardDetails, Models.CardDetails>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.Verification, Models.VerificationResult>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.Verification, Models.VerificationResult>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.VerificationResult, Rapid.Models.Verification>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.VerificationResult, Rapid.Models.Verification>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.VerificationResult, Models.VerificationResult>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.VerificationResult, Models.VerificationResult>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.Payment, Models.Payment>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.Payment, Models.Payment>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.SettlementSummary, Models.SettlementSummary>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.SettlementSummary, Models.SettlementSummary>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.SettlementTransaction, Models.SettlementTransaction>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.SettlementTransaction, Models.SettlementTransaction>.NewConfig()
+                .TwoWays());
 
-            CreateMap<Rapid.Models.BalanceSummaryPerCardType, Models.BalanceSummaryPerCardType>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<Rapid.Models.BalanceSummaryPerCardType, Models.BalanceSummaryPerCardType>.NewConfig()
+                .TwoWays());
         }
     }
 }

@@ -1,148 +1,139 @@
 ﻿using System.Linq;
-using AutoMapper;
 using eWAY.Rapid.Internals.Models;
 using eWAY.Rapid.Internals.Response;
 using eWAY.Rapid.Models;
+using Mapster;
 using BaseResponse = eWAY.Rapid.Internals.Response.BaseResponse;
 using Customer = eWAY.Rapid.Models.Customer;
 
 namespace eWAY.Rapid.Internals.Mappings {
-    internal class ResponseMapProfile : Profile {
-        public ResponseMapProfile() {
-            AllowNullCollections = true;
-            AllowNullDestinationValues = true;
+    internal class ResponseMapProfile {
+        public static void CreateResponseMapProfile(IAdapter adapter) {
 
             //Errors
-            CreateMap<BaseResponse, Rapid.Models.BaseResponse>(MemberList.Destination)
-                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()));
+            adapter.BuildAdapter(TypeAdapterConfig<BaseResponse, Rapid.Models.BaseResponse>.NewConfig()
+                .Map(dest => dest.Errors, src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()));
 
-            CreateMap<DirectPaymentResponse, CreateTransactionResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src))
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectPaymentResponse, CreateTransactionResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>()
+                .Map(dest => dest.Transaction, src => src)
+                .Map(dest => dest.TransactionStatus, src => src).TwoWays());
 
-            CreateMap<DirectPaymentResponse, Transaction>(MemberList.Destination)
-                .ForMember(dest => dest.PaymentDetails, opt => opt.MapFrom(src => src.Payment))
-                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectPaymentResponse, Transaction>.NewConfig()
+                .Map(dest => dest.PaymentDetails, src => src.Payment)
+                .Map(dest => dest.Customer, src => src.Customer));
 
-            CreateMap<DirectPaymentResponse, TransactionStatus>(MemberList.Destination)
-                .ForMember(dest => dest.ProcessingDetails, opt => opt.MapFrom(src => src))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.TransactionStatus))
-                .ForMember(dest => dest.TransactionID, opt => opt.MapFrom(src => src.TransactionID))
-                .ForMember(dest => dest.BeagleScore, opt => opt.MapFrom(src => src.BeagleScore.HasValue ? src.BeagleScore : 0))
-                .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Payment.TotalAmount))
-                .ForMember(dest => dest.VerificationResult, opt => opt.MapFrom(src => src.Verification))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectPaymentResponse, TransactionStatus>.NewConfig()
+                .Map(dest => dest.ProcessingDetails, src => src)
+                .Map(dest => dest.Status, src => src.TransactionStatus)
+                .Map(dest => dest.TransactionID, src => src.TransactionID)
+                .Map(dest => dest.BeagleScore, src => src.BeagleScore ?? 0)
+                .Map(dest => dest.Total, src => src.Payment.TotalAmount)
+                .Map(dest => dest.VerificationResult, src => src.Verification).TwoWays());
 
-            CreateMap<DirectPaymentResponse, ProcessingDetails>(MemberList.Destination)
-                .ForMember(dest => dest.AuthorisationCode, opt => opt.MapFrom(src => src.AuthorisationCode))
-                .ForMember(dest => dest.ResponseCode, opt => opt.MapFrom(src => src.ResponseCode))
-                .ForMember(dest => dest.ResponseMessage, opt => opt.MapFrom(src => src.ResponseMessage))
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectPaymentResponse, ProcessingDetails>.NewConfig()
+                .Map(dest => dest.AuthorisationCode, src => src.AuthorisationCode)
+                .Map(dest => dest.ResponseCode, src => src.ResponseCode)
+                .Map(dest => dest.ResponseMessage, src => src.ResponseMessage).TwoWays());
 
-            CreateMap<DirectPaymentResponse, CreateCustomerResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectPaymentResponse, CreateCustomerResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>());
 
-            CreateMap<CreateAccessCodeResponse, CreateTransactionResponse>(MemberList.Destination)
-                .BeforeMap((s, d) => d.Transaction = new Transaction())
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<CreateAccessCodeResponse, CreateTransactionResponse>.NewConfig()
+                .BeforeMapping((s, d) => d.Transaction = new Transaction())
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>()
+                .Map(dest => dest.Transaction, src => src));
 
-            CreateMap<CreateAccessCodeResponse, CreateCustomerResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+            adapter.BuildAdapter(TypeAdapterConfig<CreateAccessCodeResponse, CreateCustomerResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>());
 
-            CreateMap<CreateAccessCodeSharedResponse, CreateCustomerResponse>(MemberList.Destination)
-                .IncludeBase<CreateAccessCodeResponse, CreateCustomerResponse>()
-                .ForMember(dest => dest.SharedPaymentUrl, opt => opt.MapFrom(src => src.SharedPaymentUrl));
+            adapter.BuildAdapter(TypeAdapterConfig<CreateAccessCodeSharedResponse, CreateCustomerResponse>.NewConfig()
+                .Inherits<CreateAccessCodeResponse, CreateCustomerResponse>()
+                .Map(dest => dest.SharedPaymentUrl, src => src.SharedPaymentUrl));
 
-            CreateMap<CreateAccessCodeSharedResponse, CreateTransactionResponse>(MemberList.Destination)
-                .IncludeBase<CreateAccessCodeResponse, CreateTransactionResponse>()
-                .ForMember(dest => dest.SharedPaymentUrl, opt => opt.MapFrom(src => src.SharedPaymentUrl));
+            adapter.BuildAdapter(TypeAdapterConfig<CreateAccessCodeSharedResponse, CreateTransactionResponse>.NewConfig()
+                .Inherits<CreateAccessCodeResponse, CreateTransactionResponse>()
+                .Map(dest => dest.SharedPaymentUrl, src => src.SharedPaymentUrl));
 
-            CreateMap<TransactionSearchResponse, QueryTransactionResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null))
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionSearchResponse, QueryTransactionResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>()
+                .Map(dest => dest.Transaction, src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null)
+                .Map(dest => dest.TransactionStatus, src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null));
 
-            CreateMap<TransactionResult, QueryTransactionResponse>(MemberList.Destination)
-                .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src))
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionResult, QueryTransactionResponse>.NewConfig()
+                .Map(dest => dest.Transaction, src => src)
+                .Map(dest => dest.TransactionStatus, src => src));
 
-            CreateMap<TransactionResult, Transaction>(MemberList.Destination)
-                .ForMember(dest => dest.ShippingDetails, opt => opt.MapFrom(src => src.ShippingAddress))
-                .ForMember(dest => dest.PaymentDetails, opt => opt.MapFrom(src => src))
-                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionResult, Transaction>.NewConfig()
+                .Map(dest => dest.ShippingDetails, src => src.ShippingAddress)
+                .Map(dest => dest.PaymentDetails, src => src)
+                .Map(dest => dest.Customer, src => src));
 
-            CreateMap<TransactionResult, Customer>(MemberList.Destination)
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Customer))
-                .ForMember(dest => dest.Reference, opt => opt.MapFrom(src => src.Customer.Reference))
-                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Customer.Title))
-                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.Customer.FirstName))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.Customer.LastName))
-                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Customer.CompanyName))
-                .ForMember(dest => dest.JobDescription, opt => opt.MapFrom(src => src.Customer.JobDescription))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Customer.Email))
-                .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.Customer.Phone))
-                .ForMember(dest => dest.Mobile, opt => opt.MapFrom(src => src.Customer.Mobile))
-                .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Customer.Comments))
-                .ForMember(dest => dest.Fax, opt => opt.MapFrom(src => src.Customer.Fax))
-                .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Customer.Url))
-                .ForMember(dest => dest.TokenCustomerID, opt => opt.MapFrom(src => src.TokenCustomerID));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionResult, Customer>.NewConfig()
+                .Map(dest => dest.Address, src => src.Customer)
+                .Map(dest => dest.Reference, src => src.Customer.Reference)
+                .Map(dest => dest.Title, src => src.Customer.Title)
+                .Map(dest => dest.FirstName, src => src.Customer.FirstName)
+                .Map(dest => dest.LastName, src => src.Customer.LastName)
+                .Map(dest => dest.CompanyName, src => src.Customer.CompanyName)
+                .Map(dest => dest.JobDescription, src => src.Customer.JobDescription)
+                .Map(dest => dest.Email, src => src.Customer.Email)
+                .Map(dest => dest.Phone, src => src.Customer.Phone)
+                .Map(dest => dest.Mobile, src => src.Customer.Mobile)
+                .Map(dest => dest.Comments, src => src.Customer.Comments)
+                .Map(dest => dest.Fax, src => src.Customer.Fax)
+                .Map(dest => dest.Url, src => src.Customer.Url)
+                .Map(dest => dest.TokenCustomerID, src => src.TokenCustomerID));
 
-            CreateMap<TransactionResult, PaymentDetails>(MemberList.Destination)
-                .ForMember(dest => dest.InvoiceReference, opt => opt.MapFrom(src => src.InvoiceReference))
-                .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
-                .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.TotalAmount));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionResult, PaymentDetails>.NewConfig()
+                .Map(dest => dest.InvoiceReference, src => src.InvoiceReference)
+                .Map(dest => dest.InvoiceNumber, src => src.InvoiceNumber)
+                .Map(dest => dest.TotalAmount, src => src.TotalAmount));
 
-            CreateMap<TransactionResult, TransactionStatus>(MemberList.Destination)
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.TransactionStatus))
-                .ForMember(dest => dest.TransactionID, opt => opt.MapFrom(src => src.TransactionID))
-                .ForMember(dest => dest.ProcessingDetails, opt => opt.MapFrom(src => src))
-                .ForMember(dest => dest.VerificationResult, opt => opt.MapFrom(src => src.Verification))
-                .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.TotalAmount));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionResult, TransactionStatus>.NewConfig()
+                .Map(dest => dest.Status, src => src.TransactionStatus)
+                .Map(dest => dest.TransactionID, src => src.TransactionID)
+                .Map(dest => dest.ProcessingDetails, src => src)
+                .Map(dest => dest.VerificationResult, src => src.Verification)
+                .Map(dest => dest.Total, src => src.TotalAmount));
 
-            CreateMap<TransactionResult, ProcessingDetails>(MemberList.Destination)
-                .ForMember(dest => dest.AuthorisationCode, opt => opt.MapFrom(src => src.AuthorisationCode))
-                .ForMember(dest => dest.ResponseMessage, opt => opt.MapFrom(src => src.ResponseMessage))
-                .ForMember(dest => dest.ResponseCode, opt => opt.MapFrom(src => src.ResponseCode));
+            adapter.BuildAdapter(TypeAdapterConfig<TransactionResult, ProcessingDetails>.NewConfig()
+                .Map(dest => dest.AuthorisationCode, src => src.AuthorisationCode)
+                .Map(dest => dest.ResponseMessage, src => src.ResponseMessage)
+                .Map(dest => dest.ResponseCode, src => src.ResponseCode));
 
-            CreateMap<DirectCustomerSearchResponse, QueryCustomerResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectCustomerSearchResponse, QueryCustomerResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>());
 
-            CreateMap<DirectRefundResponse, RefundResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectRefundResponse, RefundResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>());
 
-            CreateMap<DirectCapturePaymentResponse, CreateTransactionResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<DirectCapturePaymentResponse, CreateTransactionResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>()
+                .Map(dest => dest.TransactionStatus, src => src));
 
-            CreateMap<DirectCapturePaymentResponse, TransactionStatus>(MemberList.Destination)
-                .ForMember(dest => dest.TransactionID, opt => opt.MapFrom(src => src.TransactionID))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.TransactionStatus));
+            adapter.BuildAdapter(TypeAdapterConfig<DirectCapturePaymentResponse, TransactionStatus>.NewConfig()
+                .Map(dest => dest.TransactionID, src => src.TransactionID)
+                .Map(dest => dest.Status, src => src.TransactionStatus));
 
-            CreateMap<DirectCapturePaymentResponse, ProcessingDetails>(MemberList.Destination)
-                .ForMember(dest => dest.ResponseCode, opt => opt.MapFrom(src => src.ResponseCode))
-                .ForMember(dest => dest.ResponseMessage, opt => opt.MapFrom(src => src.ResponseMessage));
+            adapter.BuildAdapter(TypeAdapterConfig<DirectCapturePaymentResponse, ProcessingDetails>.NewConfig()
+                .Map(dest => dest.ResponseCode, src => src.ResponseCode)
+                .Map(dest => dest.ResponseMessage, src => src.ResponseMessage));
 
-            CreateMap<DirectAuthorisationResponse, CreateTransactionResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectAuthorisationResponse, CreateTransactionResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>());
 
-            CreateMap<DirectCapturePaymentResponse, CapturePaymentResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectCapturePaymentResponse, CapturePaymentResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>().TwoWays());
 
-            CreateMap<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>().TwoWays());
 
-            CreateMap<DirectSettlementSearchResponse, SettlementSearchResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
-                .ReverseMap();
+            adapter.BuildAdapter(TypeAdapterConfig<DirectSettlementSearchResponse, SettlementSearchResponse>.NewConfig()
+                .Inherits<BaseResponse, Rapid.Models.BaseResponse>().TwoWays());
 
-            CreateMap<DirectTokenCustomer, Customer>(MemberList.Destination)
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src));
+            adapter.BuildAdapter(TypeAdapterConfig<DirectTokenCustomer, Customer>.NewConfig()
+                .Map(dest => dest.Address, src => src));
         }
     }
 }
