@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using eWAY.Rapid.Enums;
-using eWAY.Rapid.Internals.Models;
+﻿using eWAY.Rapid.Enums;
 using eWAY.Rapid.Internals.Response;
 using eWAY.Rapid.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 using CardDetails = eWAY.Rapid.Models.CardDetails;
 using Customer = eWAY.Rapid.Models.Customer;
+using DirectTokenCustomer = eWAY.Rapid.Internals.Models.DirectTokenCustomer;
 using LineItem = eWAY.Rapid.Models.LineItem;
 using Payment = eWAY.Rapid.Internals.Models.Payment;
 using Refund = eWAY.Rapid.Models.Refund;
+using ShippingAddress = eWAY.Rapid.Models.ShippingAddress;
 using VerificationResult = eWAY.Rapid.Internals.Models.VerificationResult;
 
 namespace eWAY.Rapid.Tests
@@ -123,7 +124,7 @@ namespace eWAY.Rapid.Tests
                 {
                     Country = "au",
                     City = "Sydney",
-                    PostalCode = "",
+                    PostalCode = "2000",
                     State = "NSW",
                     Street1 = "Level 5",
                     Street2 = "369 Queen Street"
@@ -277,6 +278,53 @@ namespace eWAY.Rapid.Tests
                     CurrencyCode = "AUD"
                 },
                 Errors = null
+            };
+        }
+
+        internal static Direct3DSEnrollRequest CreateEnrollRequest()
+        {
+            return new Direct3DSEnrollRequest
+            {
+                Customer = CreateCustomer(),
+                ShippingAddress = new ShippingAddress {
+                    ShippingMethod = "NextDay",
+                    FirstName = "John",
+                    LastName = "Smith",
+                    Street1 = "Level 5",
+                    Street2 = "369 Queen Street",
+                    City = "Sydney",
+                    State = "NSW",
+                    Country = "au",
+                    PostalCode = "2000",
+                    Phone = "09 889 0986"
+                },
+                Items = new List<LineItem>()
+                {
+                    new LineItem()
+                    {
+                        SKU = "12345678901234567890",
+                        Description = "Item Description 1",
+                        Quantity = 1,
+                        UnitCost = 400,
+                        Tax = 100,
+                        Total = 500
+                    },
+                    new LineItem()
+                    {
+                        SKU = "123456789012",
+                        Description = "Item Description 2",
+                        Quantity = 1,
+                        UnitCost = 400,
+                        Tax = 100,
+                        Total = 500
+                    }
+                },
+                Payment = new PaymentDetails()
+                {
+                    TotalAmount = 1000,
+                    CurrencyCode = "AUD"
+                },
+                RedirectUrl = "http://www.ewaypayments.com"
             };
         }
 

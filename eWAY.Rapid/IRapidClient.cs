@@ -138,6 +138,20 @@ namespace eWAY.Rapid
         SettlementSearchResponse SettlementSearch(SettlementSearchRequest settlementSearchRequest);
 
         /// <summary>
+        /// To verify that the card is enrolled and to authenticate the results if it is enrolled.
+        /// </summary>
+        /// <param name="enrollRequest">Request containing the transaction details</param>
+        /// <returns></returns>
+        Direct3DSEnrollResponse Direct3DSEnroll(Direct3DSEnrollRequest enrollRequest);
+
+        /// <summary>
+        /// Request the validation service to verify the authentication message returned by the card-issuing bank.
+        /// </summary>
+        /// <param name="verifyRequest">Containing the traceId and AccessCode</param>
+        /// <returns></returns>
+        Direct3DSVerifyResponse Direct3DSVerify(Direct3DSVerifyRequest verifyRequest);
+
+        /// <summary>
         /// True if the Client has valid API Key, Password and Endpoint Set.
         /// </summary>
         bool IsValid { get; }

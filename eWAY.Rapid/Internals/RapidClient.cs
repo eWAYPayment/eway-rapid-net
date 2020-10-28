@@ -243,6 +243,20 @@ namespace eWAY.Rapid.Internals
             return _mappingService.Map<DirectSettlementSearchResponse, SettlementSearchResponse>(response);
         }
 
+        public Direct3DSEnrollResponse Direct3DSEnroll(Direct3DSEnrollRequest enrollRequest)
+        {
+            var request = _mappingService.Map<Direct3DSEnrollRequest, Direct3DSecureEnrollRequest>(enrollRequest);
+            var enrollResponse = _rapidService.ThreeDSEnroll(request);
+            return _mappingService.Map<Direct3DSecureEnrollResponse, Direct3DSEnrollResponse>(enrollResponse);
+        }
+
+        public Direct3DSVerifyResponse Direct3DSVerify(Direct3DSVerifyRequest verifyRequest)
+        {
+            var request = _mappingService.Map<Direct3DSVerifyRequest, Direct3DSecureVerifyRequest>(verifyRequest);
+            var verifyResponse = _rapidService.ThreeDSVerify(request);
+            return _mappingService.Map<Direct3DSecureVerifyResponse, Direct3DSVerifyResponse>(verifyResponse);
+        }
+
         public bool IsValid
         {
             get

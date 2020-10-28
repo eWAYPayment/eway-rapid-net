@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="IntegrationTests\CreateCustomerTests.cs" />
     <Compile Include="IntegrationTests\CreateTransactionTests.cs" />
+    <Compile Include="IntegrationTests\Direct3DSEnrollTests.cs" />
+    <Compile Include="IntegrationTests\Direct3DSVerifyTests.cs" />
     <Compile Include="IntegrationTests\DirectRefundTests.cs" />
     <Compile Include="IntegrationTests\MultiThreadedTests.cs" />
     <Compile Include="IntegrationTests\PreAuthTests.cs" />

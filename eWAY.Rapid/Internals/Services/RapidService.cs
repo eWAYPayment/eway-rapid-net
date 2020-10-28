@@ -35,6 +35,8 @@ namespace eWAY.Rapid.Internals.Services
         private const string TRANSACTION_FILTER_INVOICE_NUMBER = "Transaction/InvoiceNumber/{0}";
         private const string TRANSACTION_FILTER_INVOICE_REF = "Transaction/InvoiceRef/{0}";
         private const string SETTLEMENT_SEARCH = "Search/Settlement?{0}";
+        private const string THREE_DS_ENROLL = "3dsenrol";
+        private const string THREE_DS_VERIFY = "3dsverify";
 
 
         public IMappingService MappingService { get; set; }
@@ -142,6 +144,16 @@ namespace eWAY.Rapid.Internals.Services
         {
             var method = string.Format(SETTLEMENT_SEARCH, request);
             return JsonGet<DirectSettlementSearchResponse>(method);
+        }
+
+        public Direct3DSecureEnrollResponse ThreeDSEnroll(Direct3DSecureEnrollRequest request)
+        {
+            return JsonPost<Direct3DSecureEnrollRequest, Direct3DSecureEnrollResponse>(request, THREE_DS_ENROLL);
+        }
+
+        public Direct3DSecureVerifyResponse ThreeDSVerify(Direct3DSecureVerifyRequest request)
+        {
+            return JsonPost<Direct3DSecureVerifyRequest, Direct3DSecureVerifyResponse>(request, THREE_DS_VERIFY);
         }
 
         public TResponse JsonPost<TRequest, TResponse>(TRequest request, string method)

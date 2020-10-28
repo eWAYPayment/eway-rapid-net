@@ -86,6 +86,7 @@
     <Compile Include="Internals\Models\SettlementSummary.cs" />
     <Compile Include="Internals\Models\SettlementTransaction.cs" />
     <Compile Include="Internals\Models\ShippingAddress.cs" />
+    <Compile Include="Internals\Models\Direct3DSecureAuth.cs" />
     <Compile Include="Internals\Models\TokenCustomer.cs" />
     <Compile Include="Internals\Models\TransactionFilter.cs" />
     <Compile Include="Internals\Models\TransactionResult.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="Internals\Request\DirectPaymentRequest.cs" />
     <Compile Include="Internals\Request\DirectRefundRequest.cs" />
     <Compile Include="Internals\Request\GetAccessCodeResultRequest.cs" />
+    <Compile Include="Internals\Request\Direct3DSecureEnrollRequest.cs" />
+    <Compile Include="Internals\Request\Direct3DSecureVerifyRequest.cs" />
     <Compile Include="Internals\Request\TransactionSearchRequest.cs" />
     <Compile Include="Internals\Response\BaseResponse.cs" />
     <Compile Include="Internals\Response\DirectCancelAuthorisationResponse.cs" />
@@ -117,6 +120,8 @@
     <Compile Include="Internals\Response\DirectRefundResponse.cs" />
     <Compile Include="Internals\Response\GetAccessCodeResultResponse.cs" />
     <Compile Include="Internals\Response\DirectSettlementReportResponse.cs" />
+    <Compile Include="Internals\Response\Direct3DSecureEnrollResponse.cs" />
+    <Compile Include="Internals\Response\Direct3DSecureVerifyResponse.cs" />
     <Compile Include="Internals\Response\TransactionSearchResponse.cs" />
     <Compile Include="Internals\Services\IMappingService.cs" />
     <Compile Include="Internals\Services\IRapidService.cs" />
@@ -130,6 +135,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BalanceSummaryPerCardType.cs" />
     <Compile Include="Models\BaseResponse.cs" />
+    <Compile Include="Models\Direct3DSecureAuth.cs" />
     <Compile Include="Models\SettlementReportResponse.cs" />
     <Compile Include="Models\SettlementSearchRequest.cs" />
     <Compile Include="Models\CancelAuthorisationRequest.cs" />
@@ -157,6 +163,10 @@
     <Compile Include="Models\SettlementTransaction.cs" />
     <Compile Include="Models\ShippingAddress.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
+    <Compile Include="Models\Direct3DSEnrollRequest.cs" />
+    <Compile Include="Models\Direct3DSEnrollResponse.cs" />
+    <Compile Include="Models\Direct3DSVerifyRequest.cs" />
+    <Compile Include="Models\Direct3DSVerifyResponse.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionFilter.cs" />
     <Compile Include="Models\TransactionStatus.cs" />
@@ -174,7 +184,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ErrorMessages.en.resx" />
+    <EmbeddedResource Include="Resources\ErrorMessages.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

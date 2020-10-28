@@ -5,6 +5,7 @@ using eWAY.Rapid.Internals.Response;
 using eWAY.Rapid.Models;
 using BaseResponse = eWAY.Rapid.Internals.Response.BaseResponse;
 using Customer = eWAY.Rapid.Models.Customer;
+using DirectTokenCustomer = eWAY.Rapid.Internals.Models.DirectTokenCustomer;
 
 namespace eWAY.Rapid.Internals.Mappings {
     internal class ResponseMapProfile : Profile {
@@ -143,6 +144,14 @@ namespace eWAY.Rapid.Internals.Mappings {
 
             CreateMap<DirectTokenCustomer, Customer>(MemberList.Destination)
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src));
+
+            CreateMap<Direct3DSecureEnrollResponse, Direct3DSEnrollResponse>(MemberList.Destination)
+                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ReverseMap();
+
+            CreateMap<Direct3DSecureVerifyResponse, Direct3DSVerifyResponse>(MemberList.Destination)
+                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ReverseMap();
         }
     }
 }
