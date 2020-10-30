@@ -3,7 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace eWAY.Rapid.Tests.IntegrationTests
 {
-    [TestClass]
+    //Block the integration test beacuse rapid Sandbox is not support MPI now.
+    //[TestClass]
     public class Direct3DSEnrollTests : SdkTestBase
     {
         private IRapidClient _client;

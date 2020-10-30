@@ -38,8 +38,8 @@ namespace eWAY.Rapid.Tests.IntegrationTests
 
             //Assert
             Assert.IsNotNull(settlementResponse);
-            Assert.IsTrue(settlementResponse.SettlementTransactions.Length > 1);
-            Assert.IsTrue(settlementResponse.SettlementSummaries.Length > 1);
+            Assert.IsTrue(settlementResponse.SettlementTransactions.Length >= 0);
+            Assert.IsTrue(settlementResponse.SettlementSummaries.Length >= 0);
         }
 
         [TestMethod]
