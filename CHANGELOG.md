@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.6.3
+
+ - Update the SDK API to support Rapid 3D Secure enroll and verify.
+
 ## 1.6.2
 
  - Change default TransactionType to MOTO when creating a Token Customer.

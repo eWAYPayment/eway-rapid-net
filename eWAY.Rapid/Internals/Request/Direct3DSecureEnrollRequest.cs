@@ -11,5 +11,6 @@ namespace eWAY.Rapid.Internals.Request
         public List<LineItem> Items { get; set; }
         public Payment Payment { get; set; }
         public string RedirectUrl { get; set; }
+        public string SecuredCardData { get; set; }
     }
 }

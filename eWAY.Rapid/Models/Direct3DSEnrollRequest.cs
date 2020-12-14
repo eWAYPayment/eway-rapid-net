@@ -17,5 +17,9 @@ namespace eWAY.Rapid.Models
         public PaymentDetails Payment { get; set; }
         /// <summary>The url that will redirect to after enrolling.</summary>
         public string RedirectUrl { get; set; }
+        /// <summary>
+        /// ID for any third party (or internal) secure card store. VisaCheckout, Amex, or Secure Fields
+        /// </summary>
+        public string SecuredCardData { get; set; }
     }
 }

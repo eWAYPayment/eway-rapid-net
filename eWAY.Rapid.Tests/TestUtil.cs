@@ -324,7 +324,8 @@ namespace eWAY.Rapid.Tests
                     TotalAmount = 1000,
                     CurrencyCode = "AUD"
                 },
-                RedirectUrl = "http://www.ewaypayments.com"
+                RedirectUrl = "http://www.ewaypayments.com",
+                SecuredCardData = ""
             };
         }
 
