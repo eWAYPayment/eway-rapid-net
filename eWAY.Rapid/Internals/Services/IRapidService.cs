@@ -24,6 +24,8 @@ namespace eWAY.Rapid.Internals.Services
         TransactionSearchResponse QueryInvoiceRef(string invoiceRef);
         TransactionSearchResponse QueryInvoiceNumber(string invoiceNumber);
         DirectSettlementSearchResponse SettlementSearch(string request);
+        Direct3DSecureEnrollResponse ThreeDSEnroll(Direct3DSecureEnrollRequest request);
+        Direct3DSecureVerifyResponse ThreeDSVerify(Direct3DSecureVerifyRequest request);
 
         string GetRapidEndpoint();
         void SetRapidEndpoint(string value);

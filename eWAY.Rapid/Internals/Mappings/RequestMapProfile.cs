@@ -58,6 +58,13 @@ namespace eWAY.Rapid.Internals.Mappings {
 
             CreateMap<Transaction, DirectAuthorisationRequest>(MemberList.None)
                 .IncludeBase<Transaction, DirectPaymentRequest>();
+
+            CreateMap<Direct3DSEnrollRequest, Direct3DSecureEnrollRequest>(MemberList.None)
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer))
+                .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingAddress))
+                .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.Payment))
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
+                .ForMember(dest => dest.SecuredCardData, opt => opt.MapFrom(src => src.SecuredCardData));
         }
     }
 }
