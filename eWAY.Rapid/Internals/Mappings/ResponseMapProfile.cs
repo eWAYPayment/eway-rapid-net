@@ -1,4 +1,5 @@
-﻿using System.Linq;
+using System.Linq;
+using System.Security.Cryptography;
 using AutoMapper;
 using eWAY.Rapid.Internals.Models;
 using eWAY.Rapid.Internals.Response;
@@ -18,7 +19,7 @@ namespace eWAY.Rapid.Internals.Mappings {
                 .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()));
 
             CreateMap<DirectPaymentResponse, CreateTransactionResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()))
                 .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => src))
                 .ReverseMap();
@@ -44,7 +45,7 @@ namespace eWAY.Rapid.Internals.Mappings {
                 .ReverseMap();
 
             CreateMap<DirectPaymentResponse, CreateCustomerResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
+                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();           
 
             CreateMap<CreateAccessCodeResponse, CreateTransactionResponse>(MemberList.Destination)
                 .BeforeMap((s, d) => d.Transaction = new Transaction())
@@ -131,26 +132,26 @@ namespace eWAY.Rapid.Internals.Mappings {
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>();
 
             CreateMap<DirectCapturePaymentResponse, CapturePaymentResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()))
                 .ReverseMap();
 
             CreateMap<DirectCancelAuthorisationResponse, CancelAuthorisationResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()))
                 .ReverseMap();
 
             CreateMap<DirectSettlementSearchResponse, SettlementSearchResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()))
                 .ReverseMap();
 
             CreateMap<DirectTokenCustomer, Customer>(MemberList.Destination)
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src));
 
             CreateMap<Direct3DSecureEnrollResponse, Direct3DSEnrollResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()))
                 .ReverseMap();
 
             CreateMap<Direct3DSecureVerifyResponse, Direct3DSVerifyResponse>(MemberList.Destination)
-                .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
+                .ForMember(dest => dest.Errors, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.Errors) ? null : src.Errors.Split(',').ToList()))
                 .ReverseMap();
         }
     }
