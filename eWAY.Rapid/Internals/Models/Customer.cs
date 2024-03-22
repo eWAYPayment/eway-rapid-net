@@ -22,6 +22,8 @@ namespace eWAY.Rapid.Internals.Models
         public string Fax { get;set; }
         public string Url { get; set; }
 
+        public CardDetails CardDetails { get; set; }
+
         public string getTokenCustomerID()
         {
             return (TokenCustomerID == null) ? null : TokenCustomerID.ToString();

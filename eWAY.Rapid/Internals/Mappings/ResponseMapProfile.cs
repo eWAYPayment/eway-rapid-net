@@ -66,7 +66,9 @@ namespace eWAY.Rapid.Internals.Mappings {
             CreateMap<TransactionSearchResponse, QueryTransactionResponse>(MemberList.Destination)
                 .IncludeBase<BaseResponse, Rapid.Models.BaseResponse>()
                 .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null))
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null));
+                .ForPath(dest => dest.Transaction.Customer.CardDetails, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault().Customer.CardDetails : null))
+                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => !src.Transactions.Equals(null) ? src.Transactions.FirstOrDefault() : null))
+                ;
 
             CreateMap<TransactionResult, QueryTransactionResponse>(MemberList.Destination)
                 .ForMember(dest => dest.Transaction, opt => opt.MapFrom(src => src))
